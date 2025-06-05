@@ -1,0 +1,101 @@
+body {
+  background: linear-gradient(to right, #ff0000, #f6ff00); /* rojo a azul */
+}
+.cabecera img{
+  margin-top: 10px;
+  width: 250px;;
+}
+
+.cabecera{
+  display: flex;
+  justify-content: center;
+}
+
+.contenedor-lienzo{
+  justify-items: center;
+}
+
+.lienzo{
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 100px 100px 100px 100px 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px 100px 100px 100px;
+  width: 700px;
+  height: 600px;
+  background-color: rgb(26, 110, 213);
+  border-style: solid;
+  border-color: rgb(33, 33, 116);
+  box-shadow: 1px 5px 10px 0.5px;
+  border-radius: 5px;
+
+  transition: box-shadow 1s;
+}
+
+.x{
+  display: flex;
+  border-style: solid;
+  border-color: rgba(38, 38, 129, 0.515);
+  border-width: 1px;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ;
+}
+
+.x:hover{
+    background-color: rgb(52, 110, 181);
+}
+
+.x button{
+  width: 80px; 
+  height: 80px;
+  border-radius: 40px; 
+  border-style:solid;
+  border-width: 3px;
+  border-color:rgba(0, 0, 6, 0.515);
+  cursor: pointer;
+  transition: background-color 0.5s box-shadow 0.5s;
+}
+
+.button-clicked-red{
+  background-color: red;
+}
+
+.button-clicked-yellow{
+  background-color: yellow;
+}
+
+.cuatro-en-linea{
+  background-color: rgb(18, 226, 18);
+  box-shadow: 0px 0px 20px rgba(0, 255, 0, 0.556);
+}
+
+.victoria-roja{
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  position: absolute;
+  left: 100px;
+  top: 300px;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.901);
+
+  border-radius: 100px;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.victoria-amarilla{
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  position: absolute;
+  right: 100px;
+  top: 300px;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.901);
+  
+  border-radius: 100px;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+
+
