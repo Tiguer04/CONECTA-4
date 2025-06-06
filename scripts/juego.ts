@@ -133,6 +133,10 @@ todosLosBotones.forEach((boton) =>{
 
   const botonActual:string[] = boton.className.split(' ');
   const numeroActual:number = Number(botonActual[1].split('').slice(1).join(''))
+ 
+  const fila:string[] =  boton.className.split(' ');
+  const filaActual = Number(fila[0].split('').slice(1).join());
+
 
   if(document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-red') &&
     document.querySelector(`.b${numeroActual - 7}`)?.classList.contains('button-clicked-red') &&
@@ -248,15 +252,14 @@ todosLosBotones.forEach((boton) =>{
   } 
 
     if((document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-red') &&
-    document.querySelector(`.b${numeroActual + 6}`)?.classList.contains('button-clicked-red') &&
-    document.querySelector(`.b${numeroActual + 12}`)?.classList.contains('button-clicked-red') &&
-    document.querySelector(`.b${numeroActual + 18}`)?.classList.contains('button-clicked-red')) &&
-    boton !== document.querySelector('.b1') || 
+    document.querySelector(`.b${numeroActual + 6}`)?.classList.contains('button-clicked-red') && document.querySelector(`.b${numeroActual + 6}`)?.classList.contains(`f${filaActual + 1}`) &&
+    document.querySelector(`.b${numeroActual + 12}`)?.classList.contains('button-clicked-red') && document.querySelector(`.b${numeroActual + 12}`)?.classList.contains(`f${filaActual + 2}`) &&
+    document.querySelector(`.b${numeroActual + 18}`)?.classList.contains('button-clicked-red')) && document.querySelector(`.b${numeroActual + 18}`)?.classList.contains(`f${filaActual + 3}`)  || 
+
     (document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-yellow') &&
-    document.querySelector(`.b${numeroActual +6}`)?.classList.contains('button-clicked-yellow') &&
-    document.querySelector(`.b${numeroActual + 12}`)?.classList.contains('button-clicked-yellow') &&
-    document.querySelector(`.b${numeroActual + 18}`)?.classList.contains('button-clicked-yellow')) &&
-    boton !== document.querySelector('.b1')
+    document.querySelector(`.b${numeroActual + 6}`)?.classList.contains('button-clicked-yellow') && document.querySelector(`.b${numeroActual + 6}`)?.classList.contains(`f${filaActual + 1}`) &&
+    document.querySelector(`.b${numeroActual + 12}`)?.classList.contains('button-clicked-yellow') && document.querySelector(`.b${numeroActual + 12}`)?.classList.contains(`f${filaActual + 2}`) &&
+    document.querySelector(`.b${numeroActual + 18}`)?.classList.contains('button-clicked-yellow')) && document.querySelector(`.b${numeroActual + 18}`)?.classList.contains(`f${filaActual + 3}`)
   ){
 
     hayGanador = !hayGanador;
