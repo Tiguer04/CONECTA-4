@@ -11,6 +11,8 @@ let hayGanador:boolean = false;
 
 const todosLosBotones = document.querySelectorAll('.b')
 
+const arrayBotones:Element[] = Array.from(todosLosBotones)
+
 let detener = false;
 
 function filaUno(){
@@ -129,14 +131,13 @@ const lienzo = document.querySelector('.lienzo') as HTMLElement
 
 if(!hayGanador){
 
-todosLosBotones.forEach((boton) =>{
+arrayBotones.find((boton) =>{
 
   const botonActual:string[] = boton.className.split(' ');
   const numeroActual:number = Number(botonActual[1].split('').slice(1).join(''))
  
   const fila:string[] =  boton.className.split(' ');
   const filaActual = Number(fila[0].split('').slice(1).join());
-
 
   if(document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-red') &&
     document.querySelector(`.b${numeroActual - 7}`)?.classList.contains('button-clicked-red') &&
@@ -188,7 +189,6 @@ todosLosBotones.forEach((boton) =>{
   ){
     
     hayGanador = !hayGanador;
-
     document.querySelector(`.b${numeroActual}`)?.classList.add('cuatro-en-linea') 
     document.querySelector(`.b${numeroActual - 1}`)?.classList.add('cuatro-en-linea') 
     document.querySelector(`.b${numeroActual - 2}`)?.classList.add('cuatro-en-linea') 
@@ -214,18 +214,17 @@ todosLosBotones.forEach((boton) =>{
   } 
 
     if((document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-red') &&
-    document.querySelector(`.b${numeroActual + 8}`)?.classList.contains('button-clicked-red') &&
-    document.querySelector(`.b${numeroActual + 16}`)?.classList.contains('button-clicked-red') &&
-    document.querySelector(`.b${numeroActual + 24}`)?.classList.contains('button-clicked-red')) || 
+    document.querySelector(`.b${numeroActual + 8}`)?.classList.contains('button-clicked-red') && document.querySelector(`.b${numeroActual + 8}`)?.classList.contains(`f${filaActual + 1}`) &&
+    document.querySelector(`.b${numeroActual + 16}`)?.classList.contains('button-clicked-red') && document.querySelector(`.b${numeroActual + 16}`)?.classList.contains(`f${filaActual + 2}`) &&
+    document.querySelector(`.b${numeroActual + 24}`)?.classList.contains('button-clicked-red')) && document.querySelector(`.b${numeroActual + 24}`)?.classList.contains(`f${filaActual + 3}`)  || 
+
     (document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-yellow') &&
-    document.querySelector(`.b${numeroActual +8}`)?.classList.contains('button-clicked-yellow') &&
-    document.querySelector(`.b${numeroActual + 16}`)?.classList.contains('button-clicked-yellow') &&
-    document.querySelector(`.b${numeroActual + 24}`)?.classList.contains('button-clicked-yellow'))
+    document.querySelector(`.b${numeroActual + 8}`)?.classList.contains('button-clicked-yellow') && document.querySelector(`.b${numeroActual + 8}`)?.classList.contains(`f${filaActual + 1}`) &&
+    document.querySelector(`.b${numeroActual + 16}`)?.classList.contains('button-clicked-yellow') && document.querySelector(`.b${numeroActual + 16}`)?.classList.contains(`f${filaActual + 2}`) &&
+    document.querySelector(`.b${numeroActual + 24}`)?.classList.contains('button-clicked-yellow')) && document.querySelector(`.b${numeroActual + 24}`)?.classList.contains(`f${filaActual + 3}`)
   ){
 
     hayGanador = !hayGanador;
-
-    console.log(hayGanador)
 
     document.querySelector(`.b${numeroActual}`)?.classList.add('cuatro-en-linea') 
     document.querySelector(`.b${numeroActual + 8}`)?.classList.add('cuatro-en-linea') 
@@ -288,23 +287,38 @@ todosLosBotones.forEach((boton) =>{
     }
   } 
 })
-} 
+}
 
-let acumuladorBotonesUsados:number = 0;
+hayEmpate()
 
-todosLosBotones.forEach((boton) =>{
+}
 
-  if(boton.classList.contains('button-clicked-red') || boton.classList.contains('button-clicked-yellow')){
 
-    acumuladorBotonesUsados += 1;
+function hayEmpate(){
 
-  } else{
-    acumuladorBotonesUsados = acumuladorBotonesUsados;
+  let acumuladorBotonesUsados:number = 0;
+
+  todosLosBotones.forEach((boton) =>{
+
+    if(boton.classList.contains('button-clicked-red') || boton.classList.contains('button-clicked-yellow')){
+
+      acumuladorBotonesUsados += 1;
+
+    } else{
+      acumuladorBotonesUsados = acumuladorBotonesUsados;
+    }
+
+  })
+
+  if(acumuladorBotonesUsados === 42){
+
+    const imagenEmpate = document.querySelector('.empate') as HTMLElement
+    
+    imagenEmpate.style.zIndex = '1'
+    imagenEmpate.style.opacity = '0.3'
+
   }
 
-console.log(acumuladorBotonesUsados)
-
-})
-
+  console.log(acumuladorBotonesUsados)
 
 }

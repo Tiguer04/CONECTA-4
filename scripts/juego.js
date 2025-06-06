@@ -8,6 +8,7 @@ filasDosSeis('4');
 filasDosSeis('5');
 filasDosSeis('6');
 const todosLosBotones = document.querySelectorAll('.b');
+const arrayBotones = Array.from(todosLosBotones);
 let detener = false;
 function filaUno() {
     const botonesFila = document.querySelectorAll('.f1');
@@ -87,8 +88,8 @@ function cuatroEnLinea() {
     const victoriaAmarilla = document.querySelector('.victoria-amarilla');
     const lienzo = document.querySelector('.lienzo');
     if (!hayGanador) {
-        todosLosBotones.forEach((boton) => {
-            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37;
+        arrayBotones.find((boton) => {
+            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43;
             const botonActual = boton.className.split(' ');
             const numeroActual = Number(botonActual[1].split('').slice(1).join(''));
             const fila = boton.className.split(' ');
@@ -155,20 +156,19 @@ function cuatroEnLinea() {
                 }
             }
             if ((((_4 = document.querySelector(`.b${numeroActual}`)) === null || _4 === void 0 ? void 0 : _4.classList.contains('button-clicked-red')) &&
-                ((_5 = document.querySelector(`.b${numeroActual + 8}`)) === null || _5 === void 0 ? void 0 : _5.classList.contains('button-clicked-red')) &&
-                ((_6 = document.querySelector(`.b${numeroActual + 16}`)) === null || _6 === void 0 ? void 0 : _6.classList.contains('button-clicked-red')) &&
-                ((_7 = document.querySelector(`.b${numeroActual + 24}`)) === null || _7 === void 0 ? void 0 : _7.classList.contains('button-clicked-red'))) ||
-                (((_8 = document.querySelector(`.b${numeroActual}`)) === null || _8 === void 0 ? void 0 : _8.classList.contains('button-clicked-yellow')) &&
-                    ((_9 = document.querySelector(`.b${numeroActual + 8}`)) === null || _9 === void 0 ? void 0 : _9.classList.contains('button-clicked-yellow')) &&
-                    ((_10 = document.querySelector(`.b${numeroActual + 16}`)) === null || _10 === void 0 ? void 0 : _10.classList.contains('button-clicked-yellow')) &&
-                    ((_11 = document.querySelector(`.b${numeroActual + 24}`)) === null || _11 === void 0 ? void 0 : _11.classList.contains('button-clicked-yellow')))) {
+                ((_5 = document.querySelector(`.b${numeroActual + 8}`)) === null || _5 === void 0 ? void 0 : _5.classList.contains('button-clicked-red')) && ((_6 = document.querySelector(`.b${numeroActual + 8}`)) === null || _6 === void 0 ? void 0 : _6.classList.contains(`f${filaActual + 1}`)) &&
+                ((_7 = document.querySelector(`.b${numeroActual + 16}`)) === null || _7 === void 0 ? void 0 : _7.classList.contains('button-clicked-red')) && ((_8 = document.querySelector(`.b${numeroActual + 16}`)) === null || _8 === void 0 ? void 0 : _8.classList.contains(`f${filaActual + 2}`)) &&
+                ((_9 = document.querySelector(`.b${numeroActual + 24}`)) === null || _9 === void 0 ? void 0 : _9.classList.contains('button-clicked-red'))) && ((_10 = document.querySelector(`.b${numeroActual + 24}`)) === null || _10 === void 0 ? void 0 : _10.classList.contains(`f${filaActual + 3}`)) ||
+                (((_11 = document.querySelector(`.b${numeroActual}`)) === null || _11 === void 0 ? void 0 : _11.classList.contains('button-clicked-yellow')) &&
+                    ((_12 = document.querySelector(`.b${numeroActual + 8}`)) === null || _12 === void 0 ? void 0 : _12.classList.contains('button-clicked-yellow')) && ((_13 = document.querySelector(`.b${numeroActual + 8}`)) === null || _13 === void 0 ? void 0 : _13.classList.contains(`f${filaActual + 1}`)) &&
+                    ((_14 = document.querySelector(`.b${numeroActual + 16}`)) === null || _14 === void 0 ? void 0 : _14.classList.contains('button-clicked-yellow')) && ((_15 = document.querySelector(`.b${numeroActual + 16}`)) === null || _15 === void 0 ? void 0 : _15.classList.contains(`f${filaActual + 2}`)) &&
+                    ((_16 = document.querySelector(`.b${numeroActual + 24}`)) === null || _16 === void 0 ? void 0 : _16.classList.contains('button-clicked-yellow'))) && ((_17 = document.querySelector(`.b${numeroActual + 24}`)) === null || _17 === void 0 ? void 0 : _17.classList.contains(`f${filaActual + 3}`))) {
                 hayGanador = !hayGanador;
-                console.log(hayGanador);
-                (_12 = document.querySelector(`.b${numeroActual}`)) === null || _12 === void 0 ? void 0 : _12.classList.add('cuatro-en-linea');
-                (_13 = document.querySelector(`.b${numeroActual + 8}`)) === null || _13 === void 0 ? void 0 : _13.classList.add('cuatro-en-linea');
-                (_14 = document.querySelector(`.b${numeroActual + 16}`)) === null || _14 === void 0 ? void 0 : _14.classList.add('cuatro-en-linea');
-                (_15 = document.querySelector(`.b${numeroActual + 24}`)) === null || _15 === void 0 ? void 0 : _15.classList.add('cuatro-en-linea');
-                if ((_16 = document.querySelector(`.b${numeroActual}`)) === null || _16 === void 0 ? void 0 : _16.classList.contains('button-clicked-red')) {
+                (_18 = document.querySelector(`.b${numeroActual}`)) === null || _18 === void 0 ? void 0 : _18.classList.add('cuatro-en-linea');
+                (_19 = document.querySelector(`.b${numeroActual + 8}`)) === null || _19 === void 0 ? void 0 : _19.classList.add('cuatro-en-linea');
+                (_20 = document.querySelector(`.b${numeroActual + 16}`)) === null || _20 === void 0 ? void 0 : _20.classList.add('cuatro-en-linea');
+                (_21 = document.querySelector(`.b${numeroActual + 24}`)) === null || _21 === void 0 ? void 0 : _21.classList.add('cuatro-en-linea');
+                if ((_22 = document.querySelector(`.b${numeroActual}`)) === null || _22 === void 0 ? void 0 : _22.classList.contains('button-clicked-red')) {
                     if (victoriaRoja) {
                         victoriaRoja.style.opacity = '1';
                         if (lienzo) {
@@ -176,7 +176,7 @@ function cuatroEnLinea() {
                         }
                     }
                 }
-                else if ((_17 = document.querySelector(`.b${numeroActual}`)) === null || _17 === void 0 ? void 0 : _17.classList.contains('button-clicked-yellow')) {
+                else if ((_23 = document.querySelector(`.b${numeroActual}`)) === null || _23 === void 0 ? void 0 : _23.classList.contains('button-clicked-yellow')) {
                     if (victoriaAmarilla) {
                         victoriaAmarilla.style.opacity = '1';
                         if (lienzo) {
@@ -185,20 +185,20 @@ function cuatroEnLinea() {
                     }
                 }
             }
-            if ((((_18 = document.querySelector(`.b${numeroActual}`)) === null || _18 === void 0 ? void 0 : _18.classList.contains('button-clicked-red')) &&
-                ((_19 = document.querySelector(`.b${numeroActual + 6}`)) === null || _19 === void 0 ? void 0 : _19.classList.contains('button-clicked-red')) && ((_20 = document.querySelector(`.b${numeroActual + 6}`)) === null || _20 === void 0 ? void 0 : _20.classList.contains(`f${filaActual + 1}`)) &&
-                ((_21 = document.querySelector(`.b${numeroActual + 12}`)) === null || _21 === void 0 ? void 0 : _21.classList.contains('button-clicked-red')) && ((_22 = document.querySelector(`.b${numeroActual + 12}`)) === null || _22 === void 0 ? void 0 : _22.classList.contains(`f${filaActual + 2}`)) &&
-                ((_23 = document.querySelector(`.b${numeroActual + 18}`)) === null || _23 === void 0 ? void 0 : _23.classList.contains('button-clicked-red'))) && ((_24 = document.querySelector(`.b${numeroActual + 18}`)) === null || _24 === void 0 ? void 0 : _24.classList.contains(`f${filaActual + 3}`)) ||
-                (((_25 = document.querySelector(`.b${numeroActual}`)) === null || _25 === void 0 ? void 0 : _25.classList.contains('button-clicked-yellow')) &&
-                    ((_26 = document.querySelector(`.b${numeroActual + 6}`)) === null || _26 === void 0 ? void 0 : _26.classList.contains('button-clicked-yellow')) && ((_27 = document.querySelector(`.b${numeroActual + 6}`)) === null || _27 === void 0 ? void 0 : _27.classList.contains(`f${filaActual + 1}`)) &&
-                    ((_28 = document.querySelector(`.b${numeroActual + 12}`)) === null || _28 === void 0 ? void 0 : _28.classList.contains('button-clicked-yellow')) && ((_29 = document.querySelector(`.b${numeroActual + 12}`)) === null || _29 === void 0 ? void 0 : _29.classList.contains(`f${filaActual + 2}`)) &&
-                    ((_30 = document.querySelector(`.b${numeroActual + 18}`)) === null || _30 === void 0 ? void 0 : _30.classList.contains('button-clicked-yellow'))) && ((_31 = document.querySelector(`.b${numeroActual + 18}`)) === null || _31 === void 0 ? void 0 : _31.classList.contains(`f${filaActual + 3}`))) {
+            if ((((_24 = document.querySelector(`.b${numeroActual}`)) === null || _24 === void 0 ? void 0 : _24.classList.contains('button-clicked-red')) &&
+                ((_25 = document.querySelector(`.b${numeroActual + 6}`)) === null || _25 === void 0 ? void 0 : _25.classList.contains('button-clicked-red')) && ((_26 = document.querySelector(`.b${numeroActual + 6}`)) === null || _26 === void 0 ? void 0 : _26.classList.contains(`f${filaActual + 1}`)) &&
+                ((_27 = document.querySelector(`.b${numeroActual + 12}`)) === null || _27 === void 0 ? void 0 : _27.classList.contains('button-clicked-red')) && ((_28 = document.querySelector(`.b${numeroActual + 12}`)) === null || _28 === void 0 ? void 0 : _28.classList.contains(`f${filaActual + 2}`)) &&
+                ((_29 = document.querySelector(`.b${numeroActual + 18}`)) === null || _29 === void 0 ? void 0 : _29.classList.contains('button-clicked-red'))) && ((_30 = document.querySelector(`.b${numeroActual + 18}`)) === null || _30 === void 0 ? void 0 : _30.classList.contains(`f${filaActual + 3}`)) ||
+                (((_31 = document.querySelector(`.b${numeroActual}`)) === null || _31 === void 0 ? void 0 : _31.classList.contains('button-clicked-yellow')) &&
+                    ((_32 = document.querySelector(`.b${numeroActual + 6}`)) === null || _32 === void 0 ? void 0 : _32.classList.contains('button-clicked-yellow')) && ((_33 = document.querySelector(`.b${numeroActual + 6}`)) === null || _33 === void 0 ? void 0 : _33.classList.contains(`f${filaActual + 1}`)) &&
+                    ((_34 = document.querySelector(`.b${numeroActual + 12}`)) === null || _34 === void 0 ? void 0 : _34.classList.contains('button-clicked-yellow')) && ((_35 = document.querySelector(`.b${numeroActual + 12}`)) === null || _35 === void 0 ? void 0 : _35.classList.contains(`f${filaActual + 2}`)) &&
+                    ((_36 = document.querySelector(`.b${numeroActual + 18}`)) === null || _36 === void 0 ? void 0 : _36.classList.contains('button-clicked-yellow'))) && ((_37 = document.querySelector(`.b${numeroActual + 18}`)) === null || _37 === void 0 ? void 0 : _37.classList.contains(`f${filaActual + 3}`))) {
                 hayGanador = !hayGanador;
-                (_32 = document.querySelector(`.b${numeroActual}`)) === null || _32 === void 0 ? void 0 : _32.classList.add('cuatro-en-linea');
-                (_33 = document.querySelector(`.b${numeroActual + 6}`)) === null || _33 === void 0 ? void 0 : _33.classList.add('cuatro-en-linea');
-                (_34 = document.querySelector(`.b${numeroActual + 12}`)) === null || _34 === void 0 ? void 0 : _34.classList.add('cuatro-en-linea');
-                (_35 = document.querySelector(`.b${numeroActual + 18}`)) === null || _35 === void 0 ? void 0 : _35.classList.add('cuatro-en-linea');
-                if ((_36 = document.querySelector(`.b${numeroActual}`)) === null || _36 === void 0 ? void 0 : _36.classList.contains('button-clicked-red')) {
+                (_38 = document.querySelector(`.b${numeroActual}`)) === null || _38 === void 0 ? void 0 : _38.classList.add('cuatro-en-linea');
+                (_39 = document.querySelector(`.b${numeroActual + 6}`)) === null || _39 === void 0 ? void 0 : _39.classList.add('cuatro-en-linea');
+                (_40 = document.querySelector(`.b${numeroActual + 12}`)) === null || _40 === void 0 ? void 0 : _40.classList.add('cuatro-en-linea');
+                (_41 = document.querySelector(`.b${numeroActual + 18}`)) === null || _41 === void 0 ? void 0 : _41.classList.add('cuatro-en-linea');
+                if ((_42 = document.querySelector(`.b${numeroActual}`)) === null || _42 === void 0 ? void 0 : _42.classList.contains('button-clicked-red')) {
                     if (victoriaRoja) {
                         victoriaRoja.style.opacity = '1';
                         if (lienzo) {
@@ -206,7 +206,7 @@ function cuatroEnLinea() {
                         }
                     }
                 }
-                else if ((_37 = document.querySelector(`.b${numeroActual}`)) === null || _37 === void 0 ? void 0 : _37.classList.contains('button-clicked-yellow')) {
+                else if ((_43 = document.querySelector(`.b${numeroActual}`)) === null || _43 === void 0 ? void 0 : _43.classList.contains('button-clicked-yellow')) {
                     if (victoriaAmarilla) {
                         victoriaAmarilla.style.opacity = '1';
                         if (lienzo) {
@@ -217,6 +217,9 @@ function cuatroEnLinea() {
             }
         });
     }
+    hayEmpate();
+}
+function hayEmpate() {
     let acumuladorBotonesUsados = 0;
     todosLosBotones.forEach((boton) => {
         if (boton.classList.contains('button-clicked-red') || boton.classList.contains('button-clicked-yellow')) {
@@ -225,6 +228,11 @@ function cuatroEnLinea() {
         else {
             acumuladorBotonesUsados = acumuladorBotonesUsados;
         }
-        console.log(acumuladorBotonesUsados);
     });
+    if (acumuladorBotonesUsados === 42) {
+        const imagenEmpate = document.querySelector('.empate');
+        imagenEmpate.style.zIndex = '1';
+        imagenEmpate.style.opacity = '0.3';
+    }
+    console.log(acumuladorBotonesUsados);
 }

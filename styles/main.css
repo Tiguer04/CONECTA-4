@@ -97,5 +97,16 @@ body {
   transition: opacity 0.5s;
 }
 
+.empate{
+  position: relative;
+  width: 700px;
+  height: 600px;
+  object-fit: cover;
+  top: -600px;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 1s;
+}
+
 
 
