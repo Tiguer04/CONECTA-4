@@ -1,7 +1,36 @@
 let rojosJuegan:boolean = true;
 let hayGanador:boolean = false;
+const todosLosBotones = document.querySelectorAll('.b')
+const almacenado = localStorage.getItem('botones');
+const arrayBotones:Element[] = Array.from(todosLosBotones)
+let detener = false;
+let botonesPintados: string[]|null = almacenado? JSON.parse(almacenado) : null;
+const botonesColoreados:string[] = botonesPintados || [] 
+
+renderPage()
+
+function renderPage(){
 
 
+todosLosBotones.forEach(botonInicial =>{
+
+  const botonGlobal = botonInicial.classList[1]
+
+  botonesPintados?.forEach(boton =>{
+  
+    let botonPintado = boton.split(' ').slice(1, 2).toString()
+    let colorBoton = boton.split(' ').slice(-1).toString();
+
+    if(botonPintado === botonGlobal){
+
+      console.log(document.querySelector(`.${botonPintado}`)?.classList.add(colorBoton));
+      
+   }
+
+  })
+
+})
+  
     filaUno()
     filasDosSeis('2')
     filasDosSeis('3')
@@ -9,11 +38,15 @@ let hayGanador:boolean = false;
     filasDosSeis('5')
     filasDosSeis('6')
 
-const todosLosBotones = document.querySelectorAll('.b')
+  const botonReiniciar = document.querySelector('.reset-img')
+  botonReiniciar?.addEventListener('click', () =>{
 
-const arrayBotones:Element[] = Array.from(todosLosBotones)
+    localStorage.clear()
+    location.reload()
 
-let detener = false;
+  })
+
+  }
 
 function filaUno(){
 
@@ -44,13 +77,19 @@ const botonesFila = document.querySelectorAll('.f1');
 
       if (rojosJuegan) {
         boton.classList.add('button-clicked-red');
+          const botonClases = Array.from(boton.classList).join(' ');
+          botonesColoreados.push(botonClases)
       } else {
         boton.classList.add('button-clicked-yellow');
+          const botonClases = Array.from(boton.classList).join(' ');
+          botonesColoreados.push(botonClases)
       }
 
       cuatroEnLinea()
       // Cambiar turno
       rojosJuegan = !rojosJuegan;
+      saveToLocalStorage();
+
     });
   });
 
@@ -66,9 +105,10 @@ const anterior:string[] = boton.className.split(' ');
     
 const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
 
+
   boton.addEventListener('click', () => {
     
-    todosLosBotones.forEach((boton) =>{
+    todosLosBotones.forEach((boton) =>{   
 
         if(boton.classList.contains('cuatro-en-linea')){
          detener = true;
@@ -93,6 +133,11 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
         document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-yellow')
       ){
           boton.classList.add('button-clicked-red');
+          
+          const botonClases = Array.from(boton.classList).join(' ');
+
+          botonesColoreados.push(botonClases)
+          
       } else if (!document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-red') ||
         !document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-yellow')
       ){
@@ -106,6 +151,11 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
         document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-yellow')
       ){
               boton.classList.add('button-clicked-yellow');
+            
+          const botonClases = Array.from(boton.classList).join(' ');
+
+          botonesColoreados.push(botonClases)
+
       } else if (!document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-red') ||
         !document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-yellow')
       ){
@@ -114,11 +164,12 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
           cuatroEnLinea()
     }
     rojosJuegan = !rojosJuegan;
+    
+    saveToLocalStorage();
+
   });
+
 });
-
-
-
 
 }
 
@@ -318,7 +369,10 @@ function hayEmpate(){
     imagenEmpate.style.opacity = '0.3'
 
   }
+}
 
-  console.log(acumuladorBotonesUsados)
+function saveToLocalStorage(){
+
+  localStorage.setItem('botones', JSON.stringify(botonesColoreados))
 
 }

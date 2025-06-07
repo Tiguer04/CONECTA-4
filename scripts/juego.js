@@ -1,15 +1,37 @@
 "use strict";
 let rojosJuegan = true;
 let hayGanador = false;
-filaUno();
-filasDosSeis('2');
-filasDosSeis('3');
-filasDosSeis('4');
-filasDosSeis('5');
-filasDosSeis('6');
 const todosLosBotones = document.querySelectorAll('.b');
+const almacenado = localStorage.getItem('botones');
 const arrayBotones = Array.from(todosLosBotones);
 let detener = false;
+let botonesPintados = almacenado ? JSON.parse(almacenado) : null;
+const botonesColoreados = botonesPintados || [];
+renderPage();
+function renderPage() {
+    todosLosBotones.forEach(botonInicial => {
+        const botonGlobal = botonInicial.classList[1];
+        botonesPintados === null || botonesPintados === void 0 ? void 0 : botonesPintados.forEach(boton => {
+            var _a;
+            let botonPintado = boton.split(' ').slice(1, 2).toString();
+            let colorBoton = boton.split(' ').slice(-1).toString();
+            if (botonPintado === botonGlobal) {
+                console.log((_a = document.querySelector(`.${botonPintado}`)) === null || _a === void 0 ? void 0 : _a.classList.add(colorBoton));
+            }
+        });
+    });
+    filaUno();
+    filasDosSeis('2');
+    filasDosSeis('3');
+    filasDosSeis('4');
+    filasDosSeis('5');
+    filasDosSeis('6');
+    const botonReiniciar = document.querySelector('.reset-img');
+    botonReiniciar === null || botonReiniciar === void 0 ? void 0 : botonReiniciar.addEventListener('click', () => {
+        localStorage.clear();
+        location.reload();
+    });
+}
 function filaUno() {
     const botonesFila = document.querySelectorAll('.f1');
     botonesFila.forEach((boton) => {
@@ -28,13 +50,18 @@ function filaUno() {
             }
             if (rojosJuegan) {
                 boton.classList.add('button-clicked-red');
+                const botonClases = Array.from(boton.classList).join(' ');
+                botonesColoreados.push(botonClases);
             }
             else {
                 boton.classList.add('button-clicked-yellow');
+                const botonClases = Array.from(boton.classList).join(' ');
+                botonesColoreados.push(botonClases);
             }
             cuatroEnLinea();
             // Cambiar turno
             rojosJuegan = !rojosJuegan;
+            saveToLocalStorage();
         });
     });
 }
@@ -61,6 +88,8 @@ function filasDosSeis(fila) {
                 if (((_a = document.querySelector(`.b${numeroAnterior - 7}`)) === null || _a === void 0 ? void 0 : _a.classList.contains('button-clicked-red')) ||
                     ((_b = document.querySelector(`.b${numeroAnterior - 7}`)) === null || _b === void 0 ? void 0 : _b.classList.contains('button-clicked-yellow'))) {
                     boton.classList.add('button-clicked-red');
+                    const botonClases = Array.from(boton.classList).join(' ');
+                    botonesColoreados.push(botonClases);
                 }
                 else if (!((_c = document.querySelector(`.b${numeroAnterior - 7}`)) === null || _c === void 0 ? void 0 : _c.classList.contains('button-clicked-red')) ||
                     !((_d = document.querySelector(`.b${numeroAnterior - 7}`)) === null || _d === void 0 ? void 0 : _d.classList.contains('button-clicked-yellow'))) {
@@ -72,6 +101,8 @@ function filasDosSeis(fila) {
                 if (((_e = document.querySelector(`.b${numeroAnterior - 7}`)) === null || _e === void 0 ? void 0 : _e.classList.contains('button-clicked-red')) ||
                     ((_f = document.querySelector(`.b${numeroAnterior - 7}`)) === null || _f === void 0 ? void 0 : _f.classList.contains('button-clicked-yellow'))) {
                     boton.classList.add('button-clicked-yellow');
+                    const botonClases = Array.from(boton.classList).join(' ');
+                    botonesColoreados.push(botonClases);
                 }
                 else if (!((_g = document.querySelector(`.b${numeroAnterior - 7}`)) === null || _g === void 0 ? void 0 : _g.classList.contains('button-clicked-red')) ||
                     !((_h = document.querySelector(`.b${numeroAnterior - 7}`)) === null || _h === void 0 ? void 0 : _h.classList.contains('button-clicked-yellow'))) {
@@ -80,6 +111,7 @@ function filasDosSeis(fila) {
                 cuatroEnLinea();
             }
             rojosJuegan = !rojosJuegan;
+            saveToLocalStorage();
         });
     });
 }
@@ -234,5 +266,7 @@ function hayEmpate() {
         imagenEmpate.style.zIndex = '1';
         imagenEmpate.style.opacity = '0.3';
     }
-    console.log(acumuladorBotonesUsados);
+}
+function saveToLocalStorage() {
+    localStorage.setItem('botones', JSON.stringify(botonesColoreados));
 }
