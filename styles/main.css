@@ -45,15 +45,11 @@ body {
 .x{
   display: flex;
   border-style: solid;
-  border-color: rgba(38, 38, 129, 0.515);
+  border-color: rgba(38, 38, 129, 0);
   border-width: 1px;
   justify-content: center;
   align-items: center;
   transition: background-color 0.2s ;
-}
-
-.x:hover{
-    background-color: rgb(52, 110, 181);
 }
 
 .b{

@@ -1,7 +1,11 @@
-let rojosJuegan:boolean = true;
+
+
+
+const turno:string|null = localStorage.getItem('turno')
+let rojosJuegan:boolean =  turno ? JSON.parse(turno) : true;
 let hayGanador:boolean = false;
 const todosLosBotones = document.querySelectorAll('.b')
-const almacenado = localStorage.getItem('botones');
+const almacenado:string|null= localStorage.getItem('botones');
 const arrayBotones:Element[] = Array.from(todosLosBotones)
 let detener = false;
 let botonesPintados: string[]|null = almacenado? JSON.parse(almacenado) : null;
@@ -10,8 +14,6 @@ const botonesColoreados:string[] = botonesPintados || []
 renderPage()
 
 function renderPage(){
-
-
 todosLosBotones.forEach(botonInicial =>{
 
   const botonGlobal = botonInicial.classList[1]
@@ -22,15 +24,15 @@ todosLosBotones.forEach(botonInicial =>{
     let colorBoton = boton.split(' ').slice(-1).toString();
 
     if(botonPintado === botonGlobal){
-
-      console.log(document.querySelector(`.${botonPintado}`)?.classList.add(colorBoton));
-      
+      console.log(colorBoton)
+      console.log(document.querySelector(`.${botonPintado}`)?.classList.add(colorBoton));     
    }
 
   })
 
 })
   
+    cuatroEnLinea()
     filaUno()
     filasDosSeis('2')
     filasDosSeis('3')
@@ -88,6 +90,8 @@ const botonesFila = document.querySelectorAll('.f1');
       cuatroEnLinea()
       // Cambiar turno
       rojosJuegan = !rojosJuegan;
+
+
       saveToLocalStorage();
 
     });
@@ -179,6 +183,7 @@ function cuatroEnLinea(){
 const victoriaRoja = document.querySelector('.victoria-roja') as HTMLElement;
 const victoriaAmarilla = document.querySelector('.victoria-amarilla') as HTMLElement;
 const lienzo = document.querySelector('.lienzo') as HTMLElement
+const logo = document.querySelector('.conecta-logo') as HTMLElement
 
 if(!hayGanador){
 
@@ -213,7 +218,12 @@ arrayBotones.find((boton) =>{
       if(victoriaRoja){
         victoriaRoja.style.opacity = '1';
         if(lienzo){
-          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';        }
+          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';                
+        }
+        if(logo){
+          logo.style.filter = 'drop-shadow(4px 4px 8px rgba(255, 0, 0, 0.8))'
+        }
+
       }
       
     } else if(document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-yellow')){
@@ -223,6 +233,9 @@ arrayBotones.find((boton) =>{
         if(lienzo){
           lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
         }
+          if(logo){
+          logo.style.filter = 'drop-shadow(4px 4px 8px rgba(229, 255, 0, 0.92))'
+        }     
       }
 
     }
@@ -250,7 +263,11 @@ arrayBotones.find((boton) =>{
       if(victoriaRoja){
         victoriaRoja.style.opacity = '1'
           if(lienzo){
-          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';        }
+          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';        
+        }
+          if(logo){
+          logo.style.filter = 'drop-shadow(4px 4px 8px rgba(255, 0, 0, 0.8))'
+        }
       }
       
     } else if(document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-yellow')){
@@ -258,7 +275,11 @@ arrayBotones.find((boton) =>{
       if(victoriaAmarilla){
         victoriaAmarilla.style.opacity = '1'
          if(lienzo){
-          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';        }
+          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
+        }
+          if(logo){
+          logo.style.filter = 'drop-shadow(4px 4px 8px rgba(229, 255, 0, 0.92))'
+        }     
       }
 
     }
@@ -287,7 +308,11 @@ arrayBotones.find((boton) =>{
       if(victoriaRoja){
         victoriaRoja.style.opacity = '1'
           if(lienzo){
-          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';        }
+          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
+           }
+          if(logo){
+          logo.style.filter = 'drop-shadow(4px 4px 8px rgba(255, 0, 0, 0.8))'
+        }
       }
       
     } else if(document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-yellow')){
@@ -295,7 +320,11 @@ arrayBotones.find((boton) =>{
       if(victoriaAmarilla){
         victoriaAmarilla.style.opacity = '1';
          if(lienzo){
-          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';        }
+          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';      
+          }
+          if(logo){
+          logo.style.filter = 'drop-shadow(4px 4px 8px rgba(229, 255, 0, 0.92))'
+        }     
       }
 
     }
@@ -324,7 +353,11 @@ arrayBotones.find((boton) =>{
       if(victoriaRoja){
         victoriaRoja.style.opacity = '1'
           if(lienzo){
-          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';        }
+          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';       
+         }
+          if(logo){
+          logo.style.filter = 'drop-shadow(4px 4px 8px rgba(255, 0, 0, 0.8))'
+        }         
       }
       
     } else if(document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-yellow')){
@@ -332,14 +365,18 @@ arrayBotones.find((boton) =>{
       if(victoriaAmarilla){
         victoriaAmarilla.style.opacity = '1'
          if(lienzo){
-          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';        }
+          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';     
+          }
+          if(logo){
+          logo.style.filter = 'drop-shadow(4px 4px 8px rgba(229, 255, 0, 0.92))'
+        }                   
       }
 
     }
   } 
+
 })
 }
-
 hayEmpate()
 
 }
@@ -374,5 +411,5 @@ function hayEmpate(){
 function saveToLocalStorage(){
 
   localStorage.setItem('botones', JSON.stringify(botonesColoreados))
-
+  localStorage.setItem('turno', JSON.stringify(rojosJuegan))
 }

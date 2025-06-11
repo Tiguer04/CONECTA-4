@@ -1,5 +1,6 @@
 "use strict";
-let rojosJuegan = true;
+const turno = localStorage.getItem('turno');
+let rojosJuegan = turno ? JSON.parse(turno) : true;
 let hayGanador = false;
 const todosLosBotones = document.querySelectorAll('.b');
 const almacenado = localStorage.getItem('botones');
@@ -16,10 +17,12 @@ function renderPage() {
             let botonPintado = boton.split(' ').slice(1, 2).toString();
             let colorBoton = boton.split(' ').slice(-1).toString();
             if (botonPintado === botonGlobal) {
+                console.log(colorBoton);
                 console.log((_a = document.querySelector(`.${botonPintado}`)) === null || _a === void 0 ? void 0 : _a.classList.add(colorBoton));
             }
         });
     });
+    cuatroEnLinea();
     filaUno();
     filasDosSeis('2');
     filasDosSeis('3');
@@ -119,6 +122,7 @@ function cuatroEnLinea() {
     const victoriaRoja = document.querySelector('.victoria-roja');
     const victoriaAmarilla = document.querySelector('.victoria-amarilla');
     const lienzo = document.querySelector('.lienzo');
+    const logo = document.querySelector('.conecta-logo');
     if (!hayGanador) {
         arrayBotones.find((boton) => {
             var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43;
@@ -146,6 +150,9 @@ function cuatroEnLinea() {
                         if (lienzo) {
                             lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
                         }
+                        if (logo) {
+                            logo.style.filter = 'drop-shadow(4px 4px 8px rgba(255, 0, 0, 0.8))';
+                        }
                     }
                 }
                 else if ((_p = document.querySelector(`.b${numeroActual}`)) === null || _p === void 0 ? void 0 : _p.classList.contains('button-clicked-yellow')) {
@@ -153,6 +160,9 @@ function cuatroEnLinea() {
                         victoriaAmarilla.style.opacity = '1';
                         if (lienzo) {
                             lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
+                        }
+                        if (logo) {
+                            logo.style.filter = 'drop-shadow(4px 4px 8px rgba(229, 255, 0, 0.92))';
                         }
                     }
                 }
@@ -176,6 +186,9 @@ function cuatroEnLinea() {
                         if (lienzo) {
                             lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
                         }
+                        if (logo) {
+                            logo.style.filter = 'drop-shadow(4px 4px 8px rgba(255, 0, 0, 0.8))';
+                        }
                     }
                 }
                 else if ((_3 = document.querySelector(`.b${numeroActual}`)) === null || _3 === void 0 ? void 0 : _3.classList.contains('button-clicked-yellow')) {
@@ -183,6 +196,9 @@ function cuatroEnLinea() {
                         victoriaAmarilla.style.opacity = '1';
                         if (lienzo) {
                             lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
+                        }
+                        if (logo) {
+                            logo.style.filter = 'drop-shadow(4px 4px 8px rgba(229, 255, 0, 0.92))';
                         }
                     }
                 }
@@ -206,6 +222,9 @@ function cuatroEnLinea() {
                         if (lienzo) {
                             lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
                         }
+                        if (logo) {
+                            logo.style.filter = 'drop-shadow(4px 4px 8px rgba(255, 0, 0, 0.8))';
+                        }
                     }
                 }
                 else if ((_23 = document.querySelector(`.b${numeroActual}`)) === null || _23 === void 0 ? void 0 : _23.classList.contains('button-clicked-yellow')) {
@@ -213,6 +232,9 @@ function cuatroEnLinea() {
                         victoriaAmarilla.style.opacity = '1';
                         if (lienzo) {
                             lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
+                        }
+                        if (logo) {
+                            logo.style.filter = 'drop-shadow(4px 4px 8px rgba(229, 255, 0, 0.92))';
                         }
                     }
                 }
@@ -236,6 +258,9 @@ function cuatroEnLinea() {
                         if (lienzo) {
                             lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
                         }
+                        if (logo) {
+                            logo.style.filter = 'drop-shadow(4px 4px 8px rgba(255, 0, 0, 0.8))';
+                        }
                     }
                 }
                 else if ((_43 = document.querySelector(`.b${numeroActual}`)) === null || _43 === void 0 ? void 0 : _43.classList.contains('button-clicked-yellow')) {
@@ -243,6 +268,9 @@ function cuatroEnLinea() {
                         victoriaAmarilla.style.opacity = '1';
                         if (lienzo) {
                             lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
+                        }
+                        if (logo) {
+                            logo.style.filter = 'drop-shadow(4px 4px 8px rgba(229, 255, 0, 0.92))';
                         }
                     }
                 }
@@ -269,4 +297,5 @@ function hayEmpate() {
 }
 function saveToLocalStorage() {
     localStorage.setItem('botones', JSON.stringify(botonesColoreados));
+    localStorage.setItem('turno', JSON.stringify(rojosJuegan));
 }
