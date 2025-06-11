@@ -10,6 +10,7 @@ let botonesPintados = almacenado ? JSON.parse(almacenado) : null;
 const botonesColoreados = botonesPintados || [];
 const lienzo = document.querySelector('.lienzo');
 const logo = document.querySelector('.conecta-logo');
+const clickSound = new Audio('./sounds/click-sound.wav');
 renderPage();
 function renderPage() {
     todosLosBotones.forEach(botonInicial => {
@@ -57,11 +58,15 @@ function filaUno() {
                 boton.classList.add('button-clicked-red');
                 const botonClases = Array.from(boton.classList).join(' ');
                 botonesColoreados.push(botonClases);
+                clickSound.currentTime = 0;
+                clickSound.play();
             }
             else {
                 boton.classList.add('button-clicked-yellow');
                 const botonClases = Array.from(boton.classList).join(' ');
                 botonesColoreados.push(botonClases);
+                clickSound.currentTime = 0;
+                clickSound.play();
             }
             cuatroEnLinea();
             // Cambiar turno
@@ -95,6 +100,8 @@ function filasDosSeis(fila) {
                     boton.classList.add('button-clicked-red');
                     const botonClases = Array.from(boton.classList).join(' ');
                     botonesColoreados.push(botonClases);
+                    clickSound.currentTime = 0;
+                    clickSound.play();
                 }
                 else if (!((_c = document.querySelector(`.b${numeroAnterior - 7}`)) === null || _c === void 0 ? void 0 : _c.classList.contains('button-clicked-red')) ||
                     !((_d = document.querySelector(`.b${numeroAnterior - 7}`)) === null || _d === void 0 ? void 0 : _d.classList.contains('button-clicked-yellow'))) {
@@ -108,6 +115,8 @@ function filasDosSeis(fila) {
                     boton.classList.add('button-clicked-yellow');
                     const botonClases = Array.from(boton.classList).join(' ');
                     botonesColoreados.push(botonClases);
+                    clickSound.currentTime = 0;
+                    clickSound.play();
                 }
                 else if (!((_g = document.querySelector(`.b${numeroAnterior - 7}`)) === null || _g === void 0 ? void 0 : _g.classList.contains('button-clicked-red')) ||
                     !((_h = document.querySelector(`.b${numeroAnterior - 7}`)) === null || _h === void 0 ? void 0 : _h.classList.contains('button-clicked-yellow'))) {

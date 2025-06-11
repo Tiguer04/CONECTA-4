@@ -16,6 +16,8 @@ body {
   filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.5));
 
   transition: filter 1s;
+
+    -webkit-user-drag: none;
 }
 
 .conecta-logo:hover{
@@ -55,7 +57,7 @@ body {
 .b{
   box-shadow: 1px 1px 5px 0.5px;
   border-style: solid;
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.1s;
   z-index: 1;
 }
 
@@ -98,6 +100,8 @@ body {
   opacity: 0;
   transition: opacity 0.5s;
   z-index: 0;
+  pointer-events: none;
+  -webkit-user-drag: none;
 }
 
 .victoria-amarilla{
@@ -111,6 +115,8 @@ body {
   opacity: 0;
   transition: opacity 0.5s;
   z-index: 0;
+  pointer-events: none;
+  -webkit-user-drag: none;
 }
 
 .empate-rojo{
@@ -124,6 +130,8 @@ body {
   opacity: 0;
   transition: opacity 0.5s;
   z-index: 0;
+  pointer-events: none;
+  -webkit-user-drag: none;
 }
 
 
@@ -138,6 +146,8 @@ body {
   opacity: 0;
   transition: opacity 0.5s;
   z-index: 0;
+  pointer-events: none;
+  -webkit-user-drag: none;
 }
 
 .reset-game-container{
@@ -149,15 +159,17 @@ body {
 }
 
 .reset-img{
-background-color:white;
-width: 40px;
-padding: 10px;
-border-radius: 60px;
-border-color: black;
-border-width: 3px;
-border-style: solid;
-box-shadow: 1px 5px 10px 0.5px;
-transition: box-shadow 0.5s;
+  background-color:white;
+  width: 40px;
+  padding: 10px;
+  border-radius: 60px;
+  border-color: black;
+  border-width: 3px;
+  border-style: solid;
+  box-shadow: 1px 5px 10px 0.5px;
+  transition: box-shadow 0.5s;
+
+  -webkit-user-drag: none;
 }
 
 .reset-img:hover{

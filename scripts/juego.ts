@@ -9,13 +9,14 @@ let botonesPintados: string[]|null = almacenado? JSON.parse(almacenado) : null;
 const botonesColoreados:string[] = botonesPintados || [] 
 const lienzo = document.querySelector('.lienzo') as HTMLElement
 const logo = document.querySelector('.conecta-logo') as HTMLElement
-
+const clickSound = new Audio('./sounds/click-sound.wav')
 
 renderPage()
 
 function renderPage(){
-todosLosBotones.forEach(botonInicial =>{
 
+
+todosLosBotones.forEach(botonInicial =>{
   const botonGlobal = botonInicial.classList[1]
 
   botonesPintados?.forEach(boton =>{
@@ -57,8 +58,7 @@ const botonesFila = document.querySelectorAll('.f1');
   botonesFila.forEach((boton) => {
 
     boton.addEventListener('click', () => {
-
-      
+    
       todosLosBotones.forEach((boton) =>{
 
         if(boton.classList.contains('cuatro-en-linea')){
@@ -68,11 +68,12 @@ const botonesFila = document.querySelectorAll('.f1');
         
       })
 
+
       if(detener == true){
         return;
       }
 
-      if (boton.classList.contains('button-clicked-red') || boton.classList.contains('button-clicked-yellow')) {   
+      if (boton.classList.contains('button-clicked-red') || boton.classList.contains('button-clicked-yellow')) {  
         return;
       }
 
@@ -80,10 +81,17 @@ const botonesFila = document.querySelectorAll('.f1');
         boton.classList.add('button-clicked-red');
           const botonClases = Array.from(boton.classList).join(' ');
           botonesColoreados.push(botonClases)
-      } else {
+          clickSound.currentTime = 0;
+          clickSound.play();
+
+
+        } else {
         boton.classList.add('button-clicked-yellow');
           const botonClases = Array.from(boton.classList).join(' ');
           botonesColoreados.push(botonClases)
+          clickSound.currentTime = 0;
+          clickSound.play();
+
       }
 
       cuatroEnLinea()
@@ -94,6 +102,7 @@ const botonesFila = document.querySelectorAll('.f1');
       saveToLocalStorage();
 
     });
+
   });
 }
 
@@ -103,11 +112,10 @@ function filasDosSeis(fila:string){
 const botonesFila2 = document.querySelectorAll(`.f${fila}`);
 
 botonesFila2.forEach((boton) => {
-    
+   
 const anterior:string[] = boton.className.split(' ');
     
 const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
-
 
   boton.addEventListener('click', () => {
     
@@ -131,7 +139,7 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
 
 
     if (rojosJuegan) {
-  
+      
       if(document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-red') ||
         document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-yellow')
       ){
@@ -140,7 +148,10 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
           const botonClases = Array.from(boton.classList).join(' ');
 
           botonesColoreados.push(botonClases)
-          
+
+          clickSound.currentTime = 0;
+          clickSound.play();   
+
       } else if (!document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-red') ||
         !document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-yellow')
       ){
@@ -158,6 +169,9 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
           const botonClases = Array.from(boton.classList).join(' ');
 
           botonesColoreados.push(botonClases)
+
+          clickSound.currentTime = 0;
+          clickSound.play();   
 
       } else if (!document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-red') ||
         !document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-yellow')
