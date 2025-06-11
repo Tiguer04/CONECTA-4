@@ -56,6 +56,7 @@ body {
   box-shadow: 1px 1px 5px 0.5px;
   border-style: solid;
   transition: box-shadow 0.3s;
+  z-index: 1;
 }
 
 .b:hover{
@@ -91,13 +92,12 @@ body {
   height: 300px;
   object-fit: cover;
   position: absolute;
-  left: 100px;
-  top: 300px;
-  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.901);
-
-  border-radius: 100px;
+  left: 240px;
+  top: 460px;
+  
   opacity: 0;
   transition: opacity 0.5s;
+  z-index: 0;
 }
 
 .victoria-amarilla{
@@ -105,24 +105,39 @@ body {
   height: 300px;
   object-fit: cover;
   position: absolute;
-  right: 100px;
-  top: 300px;
-  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.901);
+  right: 240px;
+  top: 457px;
   
-  border-radius: 100px;
   opacity: 0;
   transition: opacity 0.5s;
+  z-index: 0;
 }
 
-.empate{
-  position: relative;
-  width: 700px;
-  height: 600px;
+.empate-rojo{
+  width: 300px;
+  height: 300px;
   object-fit: cover;
-  top: -600px;
+  position: absolute;
+  left: 255px;
+  top: 465px;
+  
   opacity: 0;
-  z-index: -1;
-  transition: opacity 1s;
+  transition: opacity 0.5s;
+  z-index: 0;
+}
+
+
+.empate-amarillo{
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  position: absolute;
+  right: 250px;
+  top: 460px;
+  
+  opacity: 0;
+  transition: opacity 0.5s;
+  z-index: 0;
 }
 
 .reset-game-container{

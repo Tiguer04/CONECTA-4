@@ -8,6 +8,8 @@ const arrayBotones = Array.from(todosLosBotones);
 let detener = false;
 let botonesPintados = almacenado ? JSON.parse(almacenado) : null;
 const botonesColoreados = botonesPintados || [];
+const lienzo = document.querySelector('.lienzo');
+const logo = document.querySelector('.conecta-logo');
 renderPage();
 function renderPage() {
     todosLosBotones.forEach(botonInicial => {
@@ -121,8 +123,6 @@ function filasDosSeis(fila) {
 function cuatroEnLinea() {
     const victoriaRoja = document.querySelector('.victoria-roja');
     const victoriaAmarilla = document.querySelector('.victoria-amarilla');
-    const lienzo = document.querySelector('.lienzo');
-    const logo = document.querySelector('.conecta-logo');
     if (!hayGanador) {
         arrayBotones.find((boton) => {
             var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43;
@@ -147,6 +147,7 @@ function cuatroEnLinea() {
                 if ((_o = document.querySelector(`.b${numeroActual}`)) === null || _o === void 0 ? void 0 : _o.classList.contains('button-clicked-red')) {
                     if (victoriaRoja) {
                         victoriaRoja.style.opacity = '1';
+                        victoriaRoja.style.zIndex = '2';
                         if (lienzo) {
                             lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
                         }
@@ -158,6 +159,7 @@ function cuatroEnLinea() {
                 else if ((_p = document.querySelector(`.b${numeroActual}`)) === null || _p === void 0 ? void 0 : _p.classList.contains('button-clicked-yellow')) {
                     if (victoriaAmarilla) {
                         victoriaAmarilla.style.opacity = '1';
+                        victoriaAmarilla.style.zIndex = '2';
                         if (lienzo) {
                             lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
                         }
@@ -183,6 +185,7 @@ function cuatroEnLinea() {
                 if ((_2 = document.querySelector(`.b${numeroActual}`)) === null || _2 === void 0 ? void 0 : _2.classList.contains('button-clicked-red')) {
                     if (victoriaRoja) {
                         victoriaRoja.style.opacity = '1';
+                        victoriaRoja.style.zIndex = '2';
                         if (lienzo) {
                             lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
                         }
@@ -194,6 +197,7 @@ function cuatroEnLinea() {
                 else if ((_3 = document.querySelector(`.b${numeroActual}`)) === null || _3 === void 0 ? void 0 : _3.classList.contains('button-clicked-yellow')) {
                     if (victoriaAmarilla) {
                         victoriaAmarilla.style.opacity = '1';
+                        victoriaAmarilla.style.zIndex = '2';
                         if (lienzo) {
                             lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
                         }
@@ -219,6 +223,7 @@ function cuatroEnLinea() {
                 if ((_22 = document.querySelector(`.b${numeroActual}`)) === null || _22 === void 0 ? void 0 : _22.classList.contains('button-clicked-red')) {
                     if (victoriaRoja) {
                         victoriaRoja.style.opacity = '1';
+                        victoriaRoja.style.zIndex = '2';
                         if (lienzo) {
                             lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
                         }
@@ -230,6 +235,7 @@ function cuatroEnLinea() {
                 else if ((_23 = document.querySelector(`.b${numeroActual}`)) === null || _23 === void 0 ? void 0 : _23.classList.contains('button-clicked-yellow')) {
                     if (victoriaAmarilla) {
                         victoriaAmarilla.style.opacity = '1';
+                        victoriaAmarilla.style.zIndex = '2';
                         if (lienzo) {
                             lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
                         }
@@ -255,6 +261,7 @@ function cuatroEnLinea() {
                 if ((_42 = document.querySelector(`.b${numeroActual}`)) === null || _42 === void 0 ? void 0 : _42.classList.contains('button-clicked-red')) {
                     if (victoriaRoja) {
                         victoriaRoja.style.opacity = '1';
+                        victoriaRoja.style.zIndex = '2';
                         if (lienzo) {
                             lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
                         }
@@ -266,6 +273,7 @@ function cuatroEnLinea() {
                 else if ((_43 = document.querySelector(`.b${numeroActual}`)) === null || _43 === void 0 ? void 0 : _43.classList.contains('button-clicked-yellow')) {
                     if (victoriaAmarilla) {
                         victoriaAmarilla.style.opacity = '1';
+                        victoriaAmarilla.style.zIndex = '2';
                         if (lienzo) {
                             lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
                         }
@@ -290,9 +298,18 @@ function hayEmpate() {
         }
     });
     if (acumuladorBotonesUsados === 42) {
-        const imagenEmpate = document.querySelector('.empate');
-        imagenEmpate.style.zIndex = '1';
-        imagenEmpate.style.opacity = '0.3';
+        const imagenEmpateRojo = document.querySelector('.empate-rojo');
+        const imagenEmpateAmarillo = document.querySelector('.empate-amarillo');
+        imagenEmpateRojo.style.zIndex = '2';
+        imagenEmpateRojo.style.opacity = '1';
+        imagenEmpateAmarillo.style.zIndex = '2';
+        imagenEmpateAmarillo.style.opacity = '1';
+        if (lienzo) {
+            lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
+        }
+        if (logo) {
+            logo.style.filter = 'drop-shadow(4px 4px 8px rgba(255, 255, 255, 0.8))';
+        }
     }
 }
 function saveToLocalStorage() {

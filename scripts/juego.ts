@@ -1,6 +1,3 @@
-
-
-
 const turno:string|null = localStorage.getItem('turno')
 let rojosJuegan:boolean =  turno ? JSON.parse(turno) : true;
 let hayGanador:boolean = false;
@@ -10,6 +7,9 @@ const arrayBotones:Element[] = Array.from(todosLosBotones)
 let detener = false;
 let botonesPintados: string[]|null = almacenado? JSON.parse(almacenado) : null;
 const botonesColoreados:string[] = botonesPintados || [] 
+const lienzo = document.querySelector('.lienzo') as HTMLElement
+const logo = document.querySelector('.conecta-logo') as HTMLElement
+
 
 renderPage()
 
@@ -47,11 +47,10 @@ todosLosBotones.forEach(botonInicial =>{
     location.reload()
 
   })
-
   }
 
-function filaUno(){
 
+function filaUno(){
 
 const botonesFila = document.querySelectorAll('.f1');
 
@@ -96,8 +95,8 @@ const botonesFila = document.querySelectorAll('.f1');
 
     });
   });
-
 }
+
 
 function filasDosSeis(fila:string){
 
@@ -182,8 +181,6 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
 function cuatroEnLinea(){
 const victoriaRoja = document.querySelector('.victoria-roja') as HTMLElement;
 const victoriaAmarilla = document.querySelector('.victoria-amarilla') as HTMLElement;
-const lienzo = document.querySelector('.lienzo') as HTMLElement
-const logo = document.querySelector('.conecta-logo') as HTMLElement
 
 if(!hayGanador){
 
@@ -217,6 +214,7 @@ arrayBotones.find((boton) =>{
       
       if(victoriaRoja){
         victoriaRoja.style.opacity = '1';
+        victoriaRoja.style.zIndex = '2'
         if(lienzo){
           lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';                
         }
@@ -230,6 +228,8 @@ arrayBotones.find((boton) =>{
 
       if(victoriaAmarilla){
         victoriaAmarilla.style.opacity = '1'
+        victoriaAmarilla.style.zIndex = '2'
+
         if(lienzo){
           lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
         }
@@ -262,6 +262,7 @@ arrayBotones.find((boton) =>{
       
       if(victoriaRoja){
         victoriaRoja.style.opacity = '1'
+        victoriaRoja.style.zIndex = '2'
           if(lienzo){
           lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';        
         }
@@ -274,6 +275,8 @@ arrayBotones.find((boton) =>{
 
       if(victoriaAmarilla){
         victoriaAmarilla.style.opacity = '1'
+        victoriaAmarilla.style.zIndex = '2'
+
          if(lienzo){
           lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
         }
@@ -307,6 +310,7 @@ arrayBotones.find((boton) =>{
       
       if(victoriaRoja){
         victoriaRoja.style.opacity = '1'
+        victoriaRoja.style.zIndex = '2'
           if(lienzo){
           lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
            }
@@ -319,6 +323,8 @@ arrayBotones.find((boton) =>{
 
       if(victoriaAmarilla){
         victoriaAmarilla.style.opacity = '1';
+        victoriaAmarilla.style.zIndex = '2'
+
          if(lienzo){
           lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';      
           }
@@ -352,6 +358,7 @@ arrayBotones.find((boton) =>{
       
       if(victoriaRoja){
         victoriaRoja.style.opacity = '1'
+        victoriaRoja.style.zIndex = '2'
           if(lienzo){
           lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';       
          }
@@ -364,6 +371,7 @@ arrayBotones.find((boton) =>{
 
       if(victoriaAmarilla){
         victoriaAmarilla.style.opacity = '1'
+        victoriaAmarilla.style.zIndex = '2'
          if(lienzo){
           lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';     
           }
@@ -377,6 +385,7 @@ arrayBotones.find((boton) =>{
 
 })
 }
+
 hayEmpate()
 
 }
@@ -400,10 +409,21 @@ function hayEmpate(){
 
   if(acumuladorBotonesUsados === 42){
 
-    const imagenEmpate = document.querySelector('.empate') as HTMLElement
-    
-    imagenEmpate.style.zIndex = '1'
-    imagenEmpate.style.opacity = '0.3'
+    const imagenEmpateRojo = document.querySelector('.empate-rojo') as HTMLElement
+    const imagenEmpateAmarillo = document.querySelector('.empate-amarillo') as HTMLElement
+
+    imagenEmpateRojo.style.zIndex = '2'
+    imagenEmpateRojo.style.opacity = '1'
+
+    imagenEmpateAmarillo.style.zIndex = '2'
+    imagenEmpateAmarillo.style.opacity = '1'
+
+    if(lienzo){
+    lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
+      }
+    if(logo){
+    logo.style.filter = 'drop-shadow(4px 4px 8px rgba(255, 255, 255, 0.8))'
+  }
 
   }
 }
@@ -412,4 +432,5 @@ function saveToLocalStorage(){
 
   localStorage.setItem('botones', JSON.stringify(botonesColoreados))
   localStorage.setItem('turno', JSON.stringify(rojosJuegan))
+
 }
