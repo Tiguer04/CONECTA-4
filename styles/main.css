@@ -126,6 +126,21 @@ body {
   -webkit-user-drag: none;
 }
 
+.victoria-robot{
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  position: absolute;
+  right: 230px;
+  top: 464px;
+  
+  opacity: 0;
+  transition: opacity 0.5s;
+  z-index: 0;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
 .empate-rojo{
   width: 300px;
   height: 300px;
@@ -149,6 +164,21 @@ body {
   position: absolute;
   right: 250px;
   top: 460px;
+  
+  opacity: 0;
+  transition: opacity 0.5s;
+  z-index: 0;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.empate-robot{
+  width: 270px;
+  height: 270px;
+  object-fit: cover;
+  position: absolute;
+  right: 262px;
+  top: 480px;
   
   opacity: 0;
   transition: opacity 0.5s;
@@ -239,4 +269,8 @@ body {
 .boton-robot-clicked{
 border-color: red;
 border-width: 5px;
+}
+
+.no-pointer{
+  pointer-events: none;
 }

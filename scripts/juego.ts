@@ -16,8 +16,6 @@ const robotAlmacenado = localStorage.getItem('robotStyles');
 let robotStyles = robotAlmacenado? JSON.parse(robotAlmacenado) : '0'
 
 
-
-
 const todosLosBotones = document.querySelectorAll('.b')
 const almacenado:string|null= localStorage.getItem('botones');
 const arrayBotones:Element[] = Array.from(todosLosBotones)
@@ -71,8 +69,6 @@ function renderPage(){
   amarillo.style.opacity = amarilloStyles;
   robot.style.opacity = robotStyles;
 
-
-
 document.body.style.backgroundImage = bodyStyles
 
 todosLosBotones.forEach(botonInicial =>{
@@ -84,8 +80,7 @@ todosLosBotones.forEach(botonInicial =>{
     let colorBoton = boton.split(' ').slice(-1).toString();
 
     if(botonPintado === botonGlobal){
-      console.log(colorBoton)
-      console.log(document.querySelector(`.${botonPintado}`)?.classList.add(colorBoton));     
+      document.querySelector(`.${botonPintado}`)?.classList.add(colorBoton);     
    }
 
   })
@@ -103,6 +98,7 @@ todosLosBotones.forEach(botonInicial =>{
           encontrado = true;
         }
         filaUno(boton)
+
       })
     })
 
@@ -147,28 +143,372 @@ function filaUno(boton:Element){
 
       if(robotFueClickeado){
         if(rojosJuegan){
+        
+        if (boton.classList.contains('button-clicked-red') || boton.classList.contains('button-clicked-yellow') || boton.classList.contains('button-clicked-pink')) {  
+        return;
+        }    
+
         boton.classList.add('button-clicked-red');
           const botonClases = Array.from(boton.classList).join(' ');
           botonesColoreados.push(botonClases)
           clickSound.currentTime = 0;
           clickSound.play();
-          console.log(encontrado)
-        } else {
-          boton.classList.add('button-clicked-pink');
-          const botonClases = Array.from(boton.classList).join(' ');
-          botonesColoreados.push(botonClases)
-          clickSound.currentTime = 0;
-          clickSound.play();
-          encontrado = true;
+
+          for(let i = 0; i < 42; i++){
+
+            const numeroAleatorio = Math.floor(Math.random() * 42) + 1;
+
+            let botonDinamico = document.querySelector(`.b${numeroAleatorio}`) as HTMLElement
+
+            if(document.querySelector(`.b${numeroAleatorio}`)?.classList.contains('button-clicked-red') || document.querySelector(`.b${numeroAleatorio}`)?.classList.contains('button-clicked-pink')){
+
+              continue;
+
+            } 
+            
+            let encontrado = false;
+
+            for(let j = 1; j < arrayBotones.length; j++){
+
+              const SnumeroAleatorio = Math.floor(Math.random() * 42) + 1;
+              
+              let primerFiltro = true;
+
+              const contra4 = document.querySelector(`.b${SnumeroAleatorio}`) as HTMLElement
+
+              if(contra4.classList.contains('button-clicked-red') || contra4.classList.contains('button-clicked-pink')){
+                continue;
+              }
+              
+              for(let k = 1; k < arrayBotones.length; k++){
+  
+
+              if(document.querySelector(`.b${k}`)?.classList.contains('button-clicked-red') || 
+                  document.querySelector(`.b${k}`)?.classList.contains('button-clicked-pink')){
+                    continue;
+                  }
+                  
+                if(
+                
+
+                (
+                document.querySelector(`.b${k}`)?.classList.contains('f1') &&
+
+                (
+                ((document.querySelector(`.b${k + 8}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 16}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 24}`)?.classList.contains('button-clicked-pink')))
+
+                ||
+
+              ((document.querySelector(`.b${k + 6}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 12}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 18}`)?.classList.contains('button-clicked-pink')))
+             
+              ||
+
+                ((document.querySelector(`.b${k + 1}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 2}`)?.classList.contains('button-clicked-pink')) &&
+                (document.querySelector(`.b${k}`)?.classList[0] === document.querySelector(`.b${k + 1}`)?.classList[0]) &&
+                (document.querySelector(`.b${k}`)?.classList[0] === document.querySelector(`.b${k + 2}`)?.classList[0]))
+                  
+              ||
+
+                (
+                ((document.querySelector(`.b${k - 1}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k - 2}`)?.classList.contains('button-clicked-pink')) &&
+                (document.querySelector(`.b${k}`)?.classList[0] === document.querySelector(`.b${k - 1}`)?.classList[0]) &&
+                (document.querySelector(`.b${k}`)?.classList[0] === document.querySelector(`.b${k - 2}`)?.classList[0]))
+                
+                )
+                
+              ||
+
+              ((document.querySelector(`.b${k + 7}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 14}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 21}`)?.classList.contains('button-clicked-pink')))  
+
+              ||
+              
+              ((document.querySelector(`.b${k + 8}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k + 16}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k + 24}`)?.classList.contains('button-clicked-red')))
+
+                ||
+
+              ((document.querySelector(`.b${k + 6}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k + 12}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k + 18}`)?.classList.contains('button-clicked-red')))
+             
+              ||
+
+                (document.querySelector(`.b${k + 1}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k + 2}`)?.classList.contains('button-clicked-red') &&
+                (document.querySelector(`.b${k}`)?.classList[0] === document.querySelector(`.b${k + 1}`)?.classList[0]) &&
+                (document.querySelector(`.b${k}`)?.classList[0] === document.querySelector(`.b${k + 2}`)?.classList[0]))
+                  
+              ||
+
+                (
+                ((document.querySelector(`.b${k - 1}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k - 2}`)?.classList.contains('button-clicked-red') &&
+                (document.querySelector(`.b${k}`)?.classList[0] === document.querySelector(`.b${k - 1}`)?.classList[0]) &&
+                (document.querySelector(`.b${k}`)?.classList[0] === document.querySelector(`.b${k - 2}`)?.classList[0])))
+                
+                )
+
+
+               )
+               )
+
+                  ||
+
+                  (
+                !document.querySelector(`.b${k}`)?.classList.contains('f1') &&
+
+                (
+                (
+                ((document.querySelector(`.b${k + 8}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 16}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 24}`)?.classList.contains('button-clicked-pink'))) && 
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red'))
+                )
+
+                ||
+                
+                (
+               ((document.querySelector(`.b${k + 6}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 12}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 18}`)?.classList.contains('button-clicked-pink'))) && 
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red'))
+                )
+              ||
+
+                (
+                ((document.querySelector(`.b${k + 1}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 2}`)?.classList.contains('button-clicked-pink')) &&
+                (document.querySelector(`.b${k}`)?.classList[0] === document.querySelector(`.b${k + 1}`)?.classList[0]) &&
+                (document.querySelector(`.b${k}`)?.classList[0] === document.querySelector(`.b${k + 2}`)?.classList[0])) &&
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red'))
+                )
+
+                 ||
+
+                (
+                ((document.querySelector(`.b${k - 1}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k - 2}`)?.classList.contains('button-clicked-pink')) &&
+                (document.querySelector(`.b${k}`)?.classList[0] === document.querySelector(`.b${k - 1}`)?.classList[0]) &&
+                (document.querySelector(`.b${k}`)?.classList[0] === document.querySelector(`.b${k - 2}`)?.classList[0])) &&
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red'))
+                
+                )
+                
+              ||
+
+              ((document.querySelector(`.b${k + 7}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 14}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 21}`)?.classList.contains('button-clicked-pink')))  
+
+              ||
+              
+              ((document.querySelector(`.b${k + 8}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k + 16}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k + 24}`)?.classList.contains('button-clicked-red')) &&
+               (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red')))
+
+                ||
+
+              ((document.querySelector(`.b${k + 6}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k + 12}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k + 18}`)?.classList.contains('button-clicked-red')) &&
+               (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red')))
+             
+              ||
+
+                (document.querySelector(`.b${k + 1}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k + 2}`)?.classList.contains('button-clicked-red') &&
+                (document.querySelector(`.b${k}`)?.classList[0] === document.querySelector(`.b${k + 1}`)?.classList[0]) &&
+                (document.querySelector(`.b${k}`)?.classList[0] === document.querySelector(`.b${k + 2}`)?.classList[0]) &&
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red')))
+                  
+              ||
+
+                (document.querySelector(`.b${k - 1}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k - 2}`)?.classList.contains('button-clicked-red') &&
+                (document.querySelector(`.b${k}`)?.classList[0] === document.querySelector(`.b${k - 1}`)?.classList[0]) &&
+                (document.querySelector(`.b${k}`)?.classList[0] === document.querySelector(`.b${k - 2}`)?.classList[0]) &&
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red')))
+
+
+
+                  ) )
+
+              ){
+          
+                console.log('Buscando 4 en linea')
+
+              arrayBotones.forEach(boton => boton.classList.add('no-pointer'))
+              
+              botonDinamico = document.querySelector(`.b${k}`) as HTMLElement;
+
+              setTimeout(() =>{
+              
+              botonDinamico?.classList.add('button-clicked-pink');
+              const claseBotonDinamico = Array.from(botonDinamico?.classList).join(' ');
+              botonesColoreados.push(claseBotonDinamico)
+              clickSound.currentTime = 0;
+              clickSound.play();
+              cuatroEnLinea();
+              saveToLocalStorage()
+
+              setTimeout(() =>{
+              arrayBotones.forEach(boton => boton.classList.remove('no-pointer'))  
+              }, 100)
+              
+
+              }, 1000)
+
+            primerFiltro = false;
+            encontrado = true;
+
+              break;
+               
+            } else{
+              continue;
+            }
+          }
+
+          if(encontrado === true){
+            return;
+          }
+
+          if(primerFiltro){
+
+              if(document.querySelector(`.b${SnumeroAleatorio}`)?.classList.contains('f1') || 
+              (!document.querySelector(`.b${SnumeroAleatorio}`)?.classList.contains('f1') && 
+              (document.querySelector(`.b${SnumeroAleatorio-7}`)?.classList.contains('button-clicked-red') ||
+               document.querySelector(`.b${SnumeroAleatorio-7}`)?.classList.contains('button-clicked-pink'))) || 
+               (document.querySelector(`.b${SnumeroAleatorio-8}`)?.classList.contains('button-clicked-red') && 
+                (document.querySelector(`.b${SnumeroAleatorio-7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${SnumeroAleatorio-7}`)?.classList.contains('button-clicked-pink'))) ||
+               (document.querySelector(`.b${SnumeroAleatorio-6}`)?.classList.contains('button-clicked-red') && 
+                (document.querySelector(`.b${SnumeroAleatorio-7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${SnumeroAleatorio-7}`)?.classList.contains('button-clicked-pink')))){              
+
+                  
+
+               arrayBotones.forEach(boton => boton.classList.add('no-pointer'))
+              
+              botonDinamico = contra4
+
+              setTimeout(() =>{
+              
+              botonDinamico?.classList.add('button-clicked-pink');
+              const claseBotonDinamico = Array.from(botonDinamico?.classList).join(' ');
+              botonesColoreados.push(claseBotonDinamico)
+              clickSound.currentTime = 0;
+              clickSound.play();
+              cuatroEnLinea();
+              saveToLocalStorage()
+              
+              setTimeout(() =>{
+              arrayBotones.forEach(boton => boton.classList.remove('no-pointer'))  
+              }, 100)
+
+              }, 1000);
+
+               cuatroEnLinea();
+               saveToLocalStorage()
+              encontrado = true;
+              break;
+                
+              } else{
+                continue;
+              }
+              
+            }
+          }
+
+          if(encontrado === true){
+            return;
+          }
+
+          if(hayGanador){
+            return;
+          }
+
+          if(encontrado === false){
+
+            botonDinamico = document.querySelector(`.b${numeroAleatorio}`) as HTMLElement
+
+            if(botonDinamico?.classList.contains('f1')){
+
+             arrayBotones.forEach(boton => boton.classList.add('no-pointer'))
+
+              setTimeout(() =>{
+              
+              botonDinamico?.classList.add('button-clicked-pink');
+              const claseBotonDinamico = Array.from(botonDinamico?.classList).join(' ');
+              botonesColoreados.push(claseBotonDinamico)
+              clickSound.currentTime = 0;
+              clickSound.play();
+              cuatroEnLinea();
+              saveToLocalStorage();
+
+               setTimeout(() =>{
+              arrayBotones.forEach(boton => boton.classList.remove('no-pointer'))  
+              }, 100)
+              
+              }, 1000)
+              break;
+            }
+
+              if(!document.querySelector(`.b${numeroAleatorio}`)?.classList.contains('f1') &&
+              (document.querySelector(`.b${numeroAleatorio - 7}`)?.classList.contains('button-clicked-red') 
+              || document.querySelector(`.b${numeroAleatorio - 7}`)?.classList.contains('button-clicked-pink'))){
+                
+              arrayBotones.forEach(boton => boton.classList.add('no-pointer'))
+                
+              setTimeout(() =>{
+              botonDinamico?.classList.add('button-clicked-pink')
+              const claseBotonDinamico = Array.from(botonDinamico?.classList).join(' ');
+              botonesColoreados.push(claseBotonDinamico)
+              clickSound.currentTime = 0;
+              clickSound.play();
+              cuatroEnLinea();
+              saveToLocalStorage();
+               setTimeout(() =>{
+              arrayBotones.forEach(boton => boton.classList.remove('no-pointer'))  
+              }, 100)
+              
+              }, 1000) 
+              break;
+              }
+            
+            }
+
+             if(hayGanador){
+            return;
+          }
+          }
         }
-      } else{
+
+        } else{
         if (rojosJuegan) {
         boton.classList.add('button-clicked-red');
           const botonClases = Array.from(boton.classList).join(' ');
           botonesColoreados.push(botonClases)
           clickSound.currentTime = 0;
           clickSound.play();
-          console.log(encontrado)
+
 
         } else {
         boton.classList.add('button-clicked-yellow');
@@ -179,22 +519,21 @@ function filaUno(boton:Element){
           encontrado = true;
           robotStop()
         }
+
+        rojosJuegan = !rojosJuegan;
       }
 
-        
        
       cuatroEnLinea()
     
-      // Cambiar turno
-      rojosJuegan = !rojosJuegan;
 
       saveToLocalStorage();
       
-
 }
 
 
 function filasDosSeis(fila:string){
+
 
 const botonesFila2 = document.querySelectorAll(`.f${fila}`);
 
@@ -205,7 +544,7 @@ const anterior:string[] = boton.className.split(' ');
 const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
 
   boton.addEventListener('click', () => {
-    
+
     todosLosBotones.forEach((boton) =>{   
 
         if(boton.classList.contains('cuatro-en-linea')){
@@ -226,6 +565,12 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
 
     if(robotFueClickeado){
      if (rojosJuegan) {
+
+      if (!document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-red') &&
+        !document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-pink')
+      ){
+          return;
+      }
       
       if(document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-red') ||
         document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-pink')
@@ -239,37 +584,485 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
           clickSound.currentTime = 0;
           clickSound.play();   
 
-      } else if (!document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-red') ||
-        !document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-pink')
-      ){
-          return;
-      }
+            cuatroEnLinea()
+            saveToLocalStorage()
+
+            if(hayGanador){
+              return;
+            }
+
+            for(let i = 42; i > 0; i--){
+
+            const numeroAleatorio:number = Math.floor(Math.random() * 42 ) + 1;
+
+            let botonDinamico = document.querySelector(`.b${numeroAleatorio}`) as HTMLElement
+
+            let finded = false;
+
+              
+            
+            if(document.querySelector(`.b${numeroAleatorio}`)?.classList.contains('button-clicked-red') || document.querySelector(`.b${numeroAleatorio}`)?.classList.contains('button-clicked-pink')){
+
+              continue;
+
+            } 
+            
+            for(let j = 42; j > 0; j--){
+
+              const contra4 = document.querySelector(`.b${j}`) as HTMLElement
+
+            
+              if(contra4.classList.contains('button-clicked-red') || contra4.classList.contains('button-clicked-pink')){
+                continue;
+              }
+
+              if(
+                 ((document.querySelector(`.b${j + 8}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${j + 16}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${j + 24}`)?.classList.contains('button-clicked-pink')) &&
+                (document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink')))
+                ||
+
+                ((document.querySelector(`.b${j - 8}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${j - 16}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${j - 24}`)?.classList.contains('button-clicked-pink')) &&
+                ((document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink'))))
+                ||
+
+              ((document.querySelector(`.b${j + 6}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${j + 12}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${j + 18}`)?.classList.contains('button-clicked-pink')) &&
+
+                ((document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink'))))
+              ||
+
+              ((document.querySelector(`.b${j - 6}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${j - 12}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${j - 18}`)?.classList.contains('button-clicked-pink')) &&
+
+                ((document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink'))))
+              ||
+
+                ((document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${j - 14}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${j - 21}`)?.classList.contains('button-clicked-pink')) &&
+
+                (document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink'))) 
+
+              ||
+
+                ((document.querySelector(`.b${j + 1}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${j + 2}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${j + 3}`)?.classList.contains('button-clicked-pink')) && 
+                (contra4.classList[0] === document.querySelector(`.b${j + 1}`)?.classList[0]) &&
+                (contra4.classList[0] === document.querySelector(`.b${j + 2}`)?.classList[0]) &&
+                (contra4.classList[0] === document.querySelector(`.b${j + 3}`)?.classList[0]) &&
+                (document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink')))
+
+              ||
+
+              ((document.querySelector(`.b${j - 1}`)?.classList.contains('button-clicked-pink') &&
+              document.querySelector(`.b${j - 2}`)?.classList.contains('button-clicked-pink') &&
+              document.querySelector(`.b${j - 3}`)?.classList.contains('button-clicked-pink')) && 
+              (contra4.classList[0] === document.querySelector(`.b${j - 1}`)?.classList[0]) &&
+              (contra4.classList[0] === document.querySelector(`.b${j - 2}`)?.classList[0]) &&
+              (contra4.classList[0] === document.querySelector(`.b${j - 3}`)?.classList[0]) &&
+              (document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-red') || 
+              document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink')))
+
+              ||
+
+              ((document.querySelector(`.b${j - 1}`)?.classList.contains('button-clicked-pink') &&
+              document.querySelector(`.b${j - 2}`)?.classList.contains('button-clicked-pink') &&
+              document.querySelector(`.b${j - 3}`)?.classList.contains('button-clicked-pink')) && 
+              (contra4.classList[0] === document.querySelector(`.b${j - 1}`)?.classList[0]) &&
+              (contra4.classList[0] === document.querySelector(`.b${j - 2}`)?.classList[0]) &&
+              (contra4.classList[0] === document.querySelector(`.b${j - 3}`)?.classList[0]) &&
+              document.querySelector(`.b${j}`)?.classList.contains('f1'))
+              
+            ||
+
+              ((document.querySelector(`.b${j + 1}`)?.classList.contains('button-clicked-pink') &&
+              document.querySelector(`.b${j + 2}`)?.classList.contains('button-clicked-pink') &&
+              document.querySelector(`.b${j + 3}`)?.classList.contains('button-clicked-pink')) && 
+              (contra4.classList[0] === document.querySelector(`.b${j + 1}`)?.classList[0]) &&
+              (contra4.classList[0] === document.querySelector(`.b${j + 2}`)?.classList[0]) &&
+              (contra4.classList[0] === document.querySelector(`.b${j + 3}`)?.classList[0]) &&
+              document.querySelector(`.b${j}`)?.classList.contains('f1'))
+
+              ||
+  
+                ((document.querySelector(`.b${j + 8}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${j + 16}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${j + 24}`)?.classList.contains('button-clicked-red')) &&
+                ((document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink'))))
+
+                ||
+  
+                ((document.querySelector(`.b${j + 8}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${j + 16}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${j + 24}`)?.classList.contains('button-clicked-red')) &&
+                document.querySelector(`.b${j}`)?.classList.contains('f1'))
+
+                ||
+
+                ((document.querySelector(`.b${j - 8}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${j - 16}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${j - 24}`)?.classList.contains('button-clicked-red')) &&
+                ((document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink'))))
+                ||
+
+              ((document.querySelector(`.b${j + 6}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${j + 12}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${j + 18}`)?.classList.contains('button-clicked-red')) &&
+
+                ((document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink'))))
+              ||
+
+              ((document.querySelector(`.b${j - 6}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${j - 12}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${j - 18}`)?.classList.contains('button-clicked-red')) &&
+
+                ((document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink'))))
+
+              ||
+  
+                ((document.querySelector(`.b${j + 6}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${j + 12}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${j + 18}`)?.classList.contains('button-clicked-red')) &&
+                document.querySelector(`.b${j}`)?.classList.contains('f1'))
+
+              ||
+
+                ((document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${j - 14}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${j - 21}`)?.classList.contains('button-clicked-red')) && 
+                (document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink'))) 
+
+              ||
+
+                ((document.querySelector(`.b${j + 1}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${j + 2}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${j + 3}`)?.classList.contains('button-clicked-red')) && 
+                (contra4.classList[0] === document.querySelector(`.b${j + 1}`)?.classList[0]) &&
+                (contra4.classList[0] === document.querySelector(`.b${j + 2}`)?.classList[0]) &&
+                (contra4.classList[0] === document.querySelector(`.b${j + 3}`)?.classList[0]) &&
+                (document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink')))
+
+              ||
+
+              ((document.querySelector(`.b${j - 1}`)?.classList.contains('button-clicked-red') &&
+              document.querySelector(`.b${j - 2}`)?.classList.contains('button-clicked-red') &&
+              document.querySelector(`.b${j - 3}`)?.classList.contains('button-clicked-red')) && 
+              (contra4.classList[0] === document.querySelector(`.b${j - 1}`)?.classList[0]) &&
+              (contra4.classList[0] === document.querySelector(`.b${j - 2}`)?.classList[0]) &&
+              (contra4.classList[0] === document.querySelector(`.b${j - 3}`)?.classList[0]) &&
+              (document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-red') || 
+              document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink')))
+
+              ||
+
+              ((document.querySelector(`.b${j - 1}`)?.classList.contains('button-clicked-red') &&
+              document.querySelector(`.b${j - 2}`)?.classList.contains('button-clicked-red') &&
+              document.querySelector(`.b${j - 3}`)?.classList.contains('button-clicked-red')) && 
+              (contra4.classList[0] === document.querySelector(`.b${j - 1}`)?.classList[0]) &&
+              (contra4.classList[0] === document.querySelector(`.b${j - 2}`)?.classList[0]) &&
+              (contra4.classList[0] === document.querySelector(`.b${j - 3}`)?.classList[0]) &&
+              document.querySelector(`.b${j}`)?.classList.contains('f1'))
+              
+            ||
+
+              ((document.querySelector(`.b${j + 1}`)?.classList.contains('button-clicked-red') &&
+              document.querySelector(`.b${j + 2}`)?.classList.contains('button-clicked-red') &&
+              document.querySelector(`.b${j + 3}`)?.classList.contains('button-clicked-red')) && 
+              (contra4.classList[0] === document.querySelector(`.b${j + 1}`)?.classList[0]) &&
+              (contra4.classList[0] === document.querySelector(`.b${j + 2}`)?.classList[0]) &&
+              (contra4.classList[0] === document.querySelector(`.b${j + 3}`)?.classList[0]) &&
+              document.querySelector(`.b${j}`)?.classList.contains('f1'))
+             
+
+              ){  
+
+
+              arrayBotones.forEach(boton => boton.classList.add('no-pointer'))
+              
+              botonDinamico = contra4
+
+              setTimeout(() =>{
+
+
+              botonDinamico?.classList.add('button-clicked-pink');
+              const claseBotonDinamico = Array.from(botonDinamico?.classList).join(' ');
+              botonesColoreados.push(claseBotonDinamico)
+              clickSound.currentTime = 0;
+              clickSound.play();
+              cuatroEnLinea();
+              saveToLocalStorage();
+              setTimeout(() =>{
+              arrayBotones.forEach(boton => boton.classList.remove('no-pointer'))  
+              }, 100)
+
+              }, 1000);
+               console.log('se cumple segundo filtro')
+              finded = true;
+                  
+              break;
+                
+               } else{
+                continue;
+               }
+
+            }
+
+            if(finded === true){
+              break;
+            }
+
+            if(hayGanador){
+              return;
+            }
+
+            if(finded === false){
+
+            let tercerFiltro = true;
+
+            for(let k = 1; k < 43; k++){
+              
+
+              const Scontra4 = document.querySelector(`.b${k}`) as HTMLElement
+
+              if(Scontra4.classList.contains('button-clicked-red') || Scontra4.classList.contains('button-clicked-pink')){
+                continue;
+              }
+
+              if(
+                ((document.querySelector(`.b${k + 8}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k + 16}`)?.classList.contains('button-clicked-red')) && 
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink'))) 
+                ||
+                ((document.querySelector(`.b${k - 8}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k - 16}`)?.classList.contains('button-clicked-red')) && 
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink'))) 
+                ||
+                ((document.querySelector(`.b${k + 6}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k + 12}`)?.classList.contains('button-clicked-red')) && 
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink'))) 
+                ||
+                ((document.querySelector(`.b${k - 6}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k - 12}`)?.classList.contains('button-clicked-red')) && 
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink'))) 
+                || 
+                ((document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k - 14}`)?.classList.contains('button-clicked-red')) && 
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink'))) 
+                ||
+                ((document.querySelector(`.b${k + 1}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k + 2}`)?.classList.contains('button-clicked-red')) && 
+                (Scontra4.classList[0] === document.querySelector(`.b${k + 1}`)?.classList[0]) &&
+                (Scontra4.classList[0] === document.querySelector(`.b${k + 2}`)?.classList[0]) &&
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') || 
+                 document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink')))
+                ||
+                ((document.querySelector(`.b${k - 1}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k - 2}`)?.classList.contains('button-clicked-red')) && 
+                (Scontra4.classList[0] === document.querySelector(`.b${k - 1}`)?.classList[0]) &&
+               (Scontra4.classList[0] === document.querySelector(`.b${k - 2}`)?.classList[0]) &&
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink')))
+
+                ||
+
+                ((document.querySelector(`.b${k + 1}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k + 2}`)?.classList.contains('button-clicked-red')) && 
+                (Scontra4.classList[0] === document.querySelector(`.b${k + 1}`)?.classList[0]) &&
+                (Scontra4.classList[0] === document.querySelector(`.b${k + 2}`)?.classList[0]) &&
+                document.querySelector(`.b${k}`)?.classList.contains('f1'))
+
+                ||
+
+                ((document.querySelector(`.b${k - 1}`)?.classList.contains('button-clicked-red') &&
+                document.querySelector(`.b${k - 2}`)?.classList.contains('button-clicked-red')) && 
+                (Scontra4.classList[0] === document.querySelector(`.b${k - 1}`)?.classList[0]) &&
+                (Scontra4.classList[0] === document.querySelector(`.b${k - 2}`)?.classList[0]) &&
+                document.querySelector(`.b${k}`)?.classList.contains('f1'))
+
+                ||
+
+                ((document.querySelector(`.b${k + 8}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 16}`)?.classList.contains('button-clicked-pink')) && 
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink'))) 
+
+                ||
+
+                ((document.querySelector(`.b${k - 8}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k - 16}`)?.classList.contains('button-clicked-pink')) && 
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink'))) 
+
+                ||
+                
+                ((document.querySelector(`.b${k + 6}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 12}`)?.classList.contains('button-clicked-pink')) && 
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink'))) 
+                
+                ||
+                
+                ((document.querySelector(`.b${k - 6}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k - 12}`)?.classList.contains('button-clicked-pink')) && 
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink'))) 
+                
+                || 
+                
+                ((document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k - 14}`)?.classList.contains('button-clicked-pink')) && 
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink'))) 
+                
+                ||
+                
+                ((document.querySelector(`.b${k + 1}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 2}`)?.classList.contains('button-clicked-pink')) && 
+                (Scontra4.classList[0] === document.querySelector(`.b${k + 1}`)?.classList[0]) &&
+                (Scontra4.classList[0] === document.querySelector(`.b${k + 2}`)?.classList[0]) &&
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') || 
+                 document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink')))
+                
+                 ||
+                
+                 ((document.querySelector(`.b${k - 1}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k - 2}`)?.classList.contains('button-clicked-pink')) && 
+                (Scontra4.classList[0] === document.querySelector(`.b${k - 1}`)?.classList[0]) &&
+               (Scontra4.classList[0] === document.querySelector(`.b${k - 2}`)?.classList[0]) &&
+                (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink')))
+                
+                ||
+
+                ((document.querySelector(`.b${k + 1}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k + 2}`)?.classList.contains('button-clicked-pink')) && 
+                (Scontra4.classList[0] === document.querySelector(`.b${k + 1}`)?.classList[0]) &&
+                (Scontra4.classList[0] === document.querySelector(`.b${k + 2}`)?.classList[0]) &&
+                document.querySelector(`.b${k}`)?.classList.contains('f1'))
+
+                ||
+
+                ((document.querySelector(`.b${k - 1}`)?.classList.contains('button-clicked-pink') &&
+                document.querySelector(`.b${k - 2}`)?.classList.contains('button-clicked-pink')) && 
+                (Scontra4.classList[0] === document.querySelector(`.b${k - 1}`)?.classList[0]) &&
+                (Scontra4.classList[0] === document.querySelector(`.b${k - 2}`)?.classList[0]) &&
+                document.querySelector(`.b${k}`)?.classList.contains('f1'))
+
+                ){
+
+         
+               arrayBotones.forEach(boton => boton.classList.add('no-pointer'))
+              
+              botonDinamico = Scontra4
+
+              setTimeout(() =>{
+
+              botonDinamico?.classList.add('button-clicked-pink');
+              const claseBotonDinamico = Array.from(botonDinamico?.classList).join(' ');
+              botonesColoreados.push(claseBotonDinamico)
+              clickSound.currentTime = 0;
+              clickSound.play();
+              cuatroEnLinea();
+              saveToLocalStorage();
+              setTimeout(() =>{
+              arrayBotones.forEach(boton => boton.classList.remove('no-pointer'))  
+              }, 100)
+              
+              }, 1000);
+
+              tercerFiltro = false;
+              console.log('tercerFiltro ', tercerFiltro)
+              break;
+
+              } else{
+              
+                continue;
+
+              }
+
+            } 
+
+             if(hayGanador){
+              break;
+            }
+
+            if(tercerFiltro){
+              
+            if(document.querySelector(`.b${numeroAleatorio}`)?.classList.contains('button-clicked-red') ||
+                document.querySelector(`.b${numeroAleatorio}`)?.classList.contains('button-clicked-pink')){
+                  continue;
+                }
+
+              if(                
+                document.querySelector(`.b${numeroAleatorio - 7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${numeroAleatorio - 7}`)?.classList.contains('button-clicked-pink') ||
+                document.querySelector(`.b${numeroAleatorio}`)?.classList.contains('f1') || 
+
+                (document.querySelector(`.b${numeroAleatorio-8}`)?.classList.contains('button-clicked-red') && 
+                (document.querySelector(`.b${numeroAleatorio-7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${numeroAleatorio-7}`)?.classList.contains('button-clicked-pink'))) ||
+               (document.querySelector(`.b${numeroAleatorio-6}`)?.classList.contains('button-clicked-red') && 
+                (document.querySelector(`.b${numeroAleatorio-7}`)?.classList.contains('button-clicked-red') || 
+                document.querySelector(`.b${numeroAleatorio-7}`)?.classList.contains('button-clicked-pink')))){
+               
+             console.log('Este es el numero aleatorio ELEGIDO: ', numeroAleatorio)     
+             console.log('Este es el boton que colorea: ', botonDinamico)
+            //  botonDinamico = document.querySelector(`.b${numeroAleatorio}`) as HTMLElement 
+
+              setTimeout(() =>{
+              botonDinamico?.classList.add('button-clicked-pink')
+              const claseBotonDinamico = Array.from(botonDinamico?.classList).join(' ');
+              botonesColoreados.push(claseBotonDinamico)
+              clickSound.currentTime = 0;
+              clickSound.play();
+              cuatroEnLinea();
+              saveToLocalStorage();
+              setTimeout(() =>{
+              arrayBotones.forEach(boton => boton.classList.remove('no-pointer'))  
+              }, 100)
+              }, 1000) 
+              break;
+              } else{
+                continue;
+              }
+             }
+             }
+            
+            }
+
+           
+          }
 
       cuatroEnLinea()
+      saveToLocalStorage()
   
-    } else{
-
-      if(document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-red') ||
-        document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-pink')
-      ){
-              boton.classList.add('button-clicked-pink');
-            
-          const botonClases = Array.from(boton.classList).join(' ');
-
-          botonesColoreados.push(botonClases)
-
-          clickSound.currentTime = 0;
-          clickSound.play();   
-
-      } else if (!document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-red') ||
-        !document.querySelector(`.b${numeroAnterior - 7}`)?.classList.contains('button-clicked-pink')
-      ){
-          return;
-      }
-
-          cuatroEnLinea()
-
     }
+
+
     } else{
 
     if (rojosJuegan) {
@@ -316,15 +1109,20 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
           cuatroEnLinea()
      
     }
+
+       rojosJuegan = !rojosJuegan;
     }
 
-    rojosJuegan = !rojosJuegan;
-    
     saveToLocalStorage();
 
   });
 
+
+
+  cuatroEnLinea()
+
 });
+
 
 }
 
@@ -333,6 +1131,7 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
 function cuatroEnLinea(){
 const victoriaRoja = document.querySelector('.victoria-roja') as HTMLElement;
 const victoriaAmarilla = document.querySelector('.victoria-amarilla') as HTMLElement;
+const victoriaRobot = document.querySelector('.victoria-robot') as HTMLElement;
 
 if(!hayGanador){
 
@@ -381,6 +1180,20 @@ arrayBotones.find((boton) =>{
 
       }
       
+    } else if(document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-pink')){
+
+      if(victoriaRobot){
+        victoriaRobot.style.opacity = '1'
+        victoriaRobot.style.zIndex = '2'
+
+        if(lienzo){
+          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
+        }
+          if(logo){
+          logo.style.filter = 'drop-shadow(4px 4px 8px rgba(191, 0, 255, 0.92))'
+        }     
+      }
+
     } else if(document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-yellow')){
 
       if(victoriaAmarilla){
@@ -395,11 +1208,11 @@ arrayBotones.find((boton) =>{
         }     
       }
 
-    }
+    } 
 
   } 
 
-   if((document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-red') &&
+   if(((document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-red') &&
     document.querySelector(`.b${numeroActual - 1}`)?.classList.contains('button-clicked-red') &&
     document.querySelector(`.b${numeroActual - 2}`)?.classList.contains('button-clicked-red') &&
     document.querySelector(`.b${numeroActual - 3}`)?.classList.contains('button-clicked-red')) 
@@ -412,8 +1225,12 @@ arrayBotones.find((boton) =>{
     (document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-pink') &&
     document.querySelector(`.b${numeroActual - 1}`)?.classList.contains('button-clicked-pink') &&
     document.querySelector(`.b${numeroActual - 2}`)?.classList.contains('button-clicked-pink') &&
-    document.querySelector(`.b${numeroActual - 3}`)?.classList.contains('button-clicked-pink'))
-  ){
+    document.querySelector(`.b${numeroActual - 3}`)?.classList.contains('button-clicked-pink'))) 
+    && 
+    (document.querySelector(`.b${numeroActual}`)?.classList[0] === document.querySelector(`.b${numeroActual - 1}`)?.classList[0]) &&
+    (document.querySelector(`.b${numeroActual}`)?.classList[0] === document.querySelector(`.b${numeroActual - 2}`)?.classList[0]) &&
+    (document.querySelector(`.b${numeroActual}`)?.classList[0] === document.querySelector(`.b${numeroActual - 3}`)?.classList[0]) 
+    ){
     
     hayGanador = !hayGanador;
     document.querySelector(`.b${numeroActual}`)?.classList.add('cuatro-en-linea') 
@@ -445,6 +1262,20 @@ arrayBotones.find((boton) =>{
         }
           if(logo){
           logo.style.filter = 'drop-shadow(4px 4px 8px rgba(229, 255, 0, 0.92))'
+        }     
+      }
+
+    } else if(document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-pink')){
+
+      if(victoriaRobot){
+        victoriaRobot.style.opacity = '1'
+        victoriaRobot.style.zIndex = '2'
+
+        if(lienzo){
+          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
+        }
+          if(logo){
+          logo.style.filter = 'drop-shadow(4px 4px 8px rgba(191, 0, 255, 0.92))'
         }     
       }
 
@@ -501,6 +1332,20 @@ arrayBotones.find((boton) =>{
         }     
       }
 
+    } else if(document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-pink')){
+
+      if(victoriaRobot){
+        victoriaRobot.style.opacity = '1'
+        victoriaRobot.style.zIndex = '2'
+
+        if(lienzo){
+          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
+        }
+          if(logo){
+          logo.style.filter = 'drop-shadow(4px 4px 8px rgba(191, 0, 255, 0.92))'
+        }     
+      }
+
     }
   } 
 
@@ -553,6 +1398,20 @@ arrayBotones.find((boton) =>{
         }                   
       }
 
+    } else if(document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-pink')){
+
+      if(victoriaRobot){
+        victoriaRobot.style.opacity = '1'
+        victoriaRobot.style.zIndex = '2'
+
+        if(lienzo){
+          lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
+        }
+          if(logo){
+          logo.style.filter = 'drop-shadow(4px 4px 8px rgba(191, 0, 255, 0.92))'
+        }     
+      }
+
     }
   } 
 
@@ -566,21 +1425,22 @@ hayEmpate()
 
 function hayEmpate(){
 
-  let acumuladorBotonesUsados:number = 0;
+  let acumuladorBotonesUsadosRA:number = 0;
+  let acumuladorBotonesUsadosRR:number = 0;
 
   todosLosBotones.forEach((boton) =>{
 
     if(boton.classList.contains('button-clicked-red') || boton.classList.contains('button-clicked-yellow')){
 
-      acumuladorBotonesUsados += 1;
+      acumuladorBotonesUsadosRA += 1;
 
     } else{
-      acumuladorBotonesUsados = acumuladorBotonesUsados;
+      acumuladorBotonesUsadosRA = acumuladorBotonesUsadosRA;
     }
 
   })
 
-  if(acumuladorBotonesUsados === 42){
+  if(acumuladorBotonesUsadosRA === 42){
 
     const imagenEmpateRojo = document.querySelector('.empate-rojo') as HTMLElement
     const imagenEmpateAmarillo = document.querySelector('.empate-amarillo') as HTMLElement
@@ -599,6 +1459,39 @@ function hayEmpate(){
   }
 
   }
+
+    todosLosBotones.forEach((boton) =>{
+
+    if(boton.classList.contains('button-clicked-red') || boton.classList.contains('button-clicked-pink')){
+
+      acumuladorBotonesUsadosRR += 1;
+
+    } else{
+      acumuladorBotonesUsadosRR = acumuladorBotonesUsadosRR;
+    }
+
+  })
+
+  if(acumuladorBotonesUsadosRR === 42){
+
+    const imagenEmpateRojo = document.querySelector('.empate-rojo') as HTMLElement
+    const imagenEmpateRobot = document.querySelector('.empate-robot') as HTMLElement
+
+    imagenEmpateRojo.style.zIndex = '2'
+    imagenEmpateRojo.style.opacity = '1'
+
+    imagenEmpateRobot.style.zIndex = '2'
+    imagenEmpateRobot.style.opacity = '1'
+
+    if(lienzo){
+    lienzo.style.boxShadow = '0px 0px 30px rgba(255, 255, 255, 0.65)';
+      }
+    if(logo){
+    logo.style.filter = 'drop-shadow(4px 4px 8px rgba(255, 255, 255, 0.8))'
+  }
+
+  }
+
 }
 
 function saveToLocalStorage(){
@@ -631,5 +1524,8 @@ function robotStop() {
   botonRobot.removeEventListener('click', handleClick);
 }
 
+function numeroAleatorio (min:number, max:number){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 
