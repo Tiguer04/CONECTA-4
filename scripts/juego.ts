@@ -1,24 +1,24 @@
 const turno:string|null = localStorage.getItem('turno')
 let rojosJuegan:boolean =  turno ? JSON.parse(turno) : true;
-let hayGanador:boolean = false;
-let detener:boolean = false;
-let encontrado1:boolean = false;
+let hayGanador = false;
+let detener = false;
+let encontrado1 = false;
 const recienCargado:string|null = localStorage.getItem('recienCargado');
 let inicioRenderizado:boolean = recienCargado !== null ? JSON.parse(recienCargado) : true;
 
 const clickeadoBotonRobot:string|null = localStorage.getItem('robot')
 let robotFueClickeado:string|boolean = clickeadoBotonRobot? JSON.parse(clickeadoBotonRobot) : false;
-const bodyAlmacenado = localStorage.getItem('body');
-let bodyStyles = bodyAlmacenado? JSON.parse(bodyAlmacenado) : 'linear-gradient(to right, #ff0000, #f6ff00)';
+const bodyAlmacenado:string|null = localStorage.getItem('body');
+let bodyStyles:string = bodyAlmacenado? JSON.parse(bodyAlmacenado) : 'linear-gradient(to right, #ff0000, #f6ff00)';
 
-const amarilloAlmacenado = localStorage.getItem('amarilloStyles')
-let amarilloStyles = amarilloAlmacenado? JSON.parse(amarilloAlmacenado) : '1'
+const amarilloAlmacenado:string|null = localStorage.getItem('amarilloStyles')
+let amarilloStyles:string = amarilloAlmacenado? JSON.parse(amarilloAlmacenado) : '1'
 
-const robotAlmacenado = localStorage.getItem('robotStyles');
-let robotStyles = robotAlmacenado? JSON.parse(robotAlmacenado) : '0'
+const robotAlmacenado:string|null = localStorage.getItem('robotStyles');
+let robotStyles:string = robotAlmacenado? JSON.parse(robotAlmacenado) : '0'
 
 
-const todosLosBotones = document.querySelectorAll('.b')
+const todosLosBotones = document.querySelectorAll<HTMLButtonElement>('.b')
 const almacenado:string|null= localStorage.getItem('botones');
 const arrayBotones:Element[] = Array.from(todosLosBotones)
 let botonesPintados: string[]|null = almacenado? JSON.parse(almacenado) : null;
@@ -30,23 +30,23 @@ const amarillo = document.querySelector('.amarillo-pelea-fondo') as HTMLElement
 const robot = document.querySelector('.robot-pelea-fondo') as HTMLElement
 const botonRobot = document.querySelector('.robot-img') as HTMLImageElement
 const botonRobotClickeado = localStorage.getItem('robotClickeado');
-let clickedClase = botonRobotClickeado? JSON.parse(botonRobotClickeado) : null;
+let clickedClase:string|null = botonRobotClickeado? JSON.parse(botonRobotClickeado) : null;
 
 const clickSound = new Audio('./sounds/click-sound.wav') as HTMLAudioElement
 
 
-    const botonesFila = Array.from(document.querySelectorAll('.f1'));
-    const botonesFila2 = Array.from(document.querySelectorAll('.f2'));
-    const botonesFila3 = Array.from(document.querySelectorAll('.f3'));
-    const botonesFila4 = Array.from(document.querySelectorAll('.f4'));
-    const botonesFila5 = Array.from(document.querySelectorAll('.f5'));
-    const botonesFila6 = Array.from(document.querySelectorAll('.f6'));
+    const botonesFila = Array.from(document.querySelectorAll<HTMLButtonElement>('.f1'));
+    const botonesFila2= Array.from(document.querySelectorAll<HTMLButtonElement>('.f2'));
+    const botonesFila3 = Array.from(document.querySelectorAll<HTMLButtonElement>('.f3'));
+    const botonesFila4 = Array.from(document.querySelectorAll<HTMLButtonElement>('.f4'));
+    const botonesFila5 = Array.from(document.querySelectorAll<HTMLButtonElement>('.f5'));
+    const botonesFila6 = Array.from(document.querySelectorAll<HTMLButtonElement>('.f6'));
 
-const imagenAlterna = localStorage.getItem('imagenYellowRobot');
-let imagenActual = imagenAlterna?JSON.parse(imagenAlterna) : 2; 
+const imagenAlterna:string|null = localStorage.getItem('imagenYellowRobot');
+let imagenActual:number = imagenAlterna?JSON.parse(imagenAlterna) : 2; 
 
 
-const handleClick1 = () => {
+const handleClick1 = ():void => {
 
     if(botonesColoreados.length !== 0){
     return;
@@ -83,7 +83,7 @@ const handleClick1 = () => {
 
 }
 
-const handleClick2 = () =>{
+const handleClick2 = ():void =>{
 
 
   if(botonesColoreados.length !== 0){
@@ -168,12 +168,12 @@ function renderPage(){
 document.body.style.backgroundImage = bodyStyles
 
 todosLosBotones.forEach(botonInicial =>{
-  const botonGlobal = botonInicial.classList[1]
+  const botonGlobal:string = botonInicial.classList[1]
 
   botonesPintados?.forEach(boton =>{
   
-    let botonPintado = boton.split(' ').slice(1, 2).toString()
-    let colorBoton = boton.split(' ').slice(-1).toString();
+    let botonPintado:string = boton.split(' ').slice(1, 2).toString()
+    let colorBoton:string = boton.split(' ').slice(-1).toString();
 
     if(botonPintado === botonGlobal){
       document.querySelector(`.${botonPintado}`)?.classList.add(colorBoton);     
@@ -193,7 +193,7 @@ todosLosBotones.forEach(botonInicial =>{
     filtrajePorFila(botonesFila6)
 
 
-    const botonReiniciar = document.querySelector('.reset-img')
+    const botonReiniciar:HTMLImageElement|null = document.querySelector('.reset-img')
     botonReiniciar?.addEventListener('click', () =>{
 
       localStorage.clear();
@@ -234,16 +234,16 @@ function filaUno(boton:Element){
         }    
 
         boton.classList.add('button-clicked-red');
-          const botonClases = Array.from(boton.classList).join(' ');
+          const botonClases:string = Array.from(boton.classList).join(' ');
           botonesColoreados.push(botonClases)
           clickSound.currentTime = 0;
           clickSound.play();
 
           for(let i = 0; i < 42; i++){
 
-            const numeroAleatorio = Math.floor(Math.random() * 42) + 1;
+            const numeroAleatorio:number = Math.floor(Math.random() * 42) + 1;
 
-            let botonDinamico = document.querySelector(`.b${numeroAleatorio}`) as HTMLElement
+            let botonDinamico = document.querySelector(`.b${numeroAleatorio}`) as HTMLButtonElement
 
             if(document.querySelector(`.b${numeroAleatorio}`)?.classList.contains('button-clicked-red') || document.querySelector(`.b${numeroAleatorio}`)?.classList.contains('button-clicked-pink')){
 
@@ -255,11 +255,11 @@ function filaUno(boton:Element){
 
             for(let j = 1; j < arrayBotones.length; j++){
 
-              const SnumeroAleatorio = Math.floor(Math.random() * 42) + 1;
+              const SnumeroAleatorio:number = Math.floor(Math.random() * 42) + 1;
               
               let primerFiltro = true;
 
-              const contra4 = document.querySelector(`.b${SnumeroAleatorio}`) as HTMLElement
+              const contra4 = document.querySelector(`.b${SnumeroAleatorio}`) as HTMLButtonElement
 
               if(contra4.classList.contains('button-clicked-red') || contra4.classList.contains('button-clicked-pink')){
                 continue;
@@ -442,12 +442,12 @@ function filaUno(boton:Element){
 
               arrayBotones.forEach(boton => boton.classList.add('no-pointer'))
               
-              botonDinamico = document.querySelector(`.b${k}`) as HTMLElement;
+              botonDinamico = document.querySelector(`.b${k}`) as HTMLButtonElement;
 
               setTimeout(() =>{
               
               botonDinamico?.classList.add('button-clicked-pink');
-              const claseBotonDinamico = Array.from(botonDinamico?.classList).join(' ');
+              const claseBotonDinamico:string = Array.from(botonDinamico?.classList).join(' ');
               botonesColoreados.push(claseBotonDinamico)
               clickSound.currentTime = 0;
               clickSound.play();
@@ -532,7 +532,7 @@ function filaUno(boton:Element){
 
           if(encontrado === false){
 
-            botonDinamico = document.querySelector(`.b${numeroAleatorio}`) as HTMLElement
+            botonDinamico = document.querySelector(`.b${numeroAleatorio}`) as HTMLButtonElement
 
             if(botonDinamico?.classList.contains('f1')){
 
@@ -541,7 +541,7 @@ function filaUno(boton:Element){
               setTimeout(() =>{
               
               botonDinamico?.classList.add('button-clicked-pink');
-              const claseBotonDinamico = Array.from(botonDinamico?.classList).join(' ');
+              const claseBotonDinamico:string = Array.from(botonDinamico?.classList).join(' ');
               botonesColoreados.push(claseBotonDinamico)
               clickSound.currentTime = 0;
               clickSound.play();
@@ -564,7 +564,7 @@ function filaUno(boton:Element){
                 
               setTimeout(() =>{
               botonDinamico?.classList.add('button-clicked-pink')
-              const claseBotonDinamico = Array.from(botonDinamico?.classList).join(' ');
+              const claseBotonDinamico:string = Array.from(botonDinamico?.classList).join(' ');
               botonesColoreados.push(claseBotonDinamico)
               clickSound.currentTime = 0;
               clickSound.play();
@@ -589,7 +589,7 @@ function filaUno(boton:Element){
         } else{
         if (rojosJuegan) {
         boton.classList.add('button-clicked-red');
-          const botonClases = Array.from(boton.classList).join(' ');
+          const botonClases:string = Array.from(boton.classList).join(' ');
           botonesColoreados.push(botonClases)
           clickSound.currentTime = 0;
           clickSound.play();
@@ -600,7 +600,7 @@ function filaUno(boton:Element){
 
         } else {
         boton.classList.add('button-clicked-yellow');
-          const botonClases = Array.from(boton.classList).join(' ');
+          const botonClases:string = Array.from(boton.classList).join(' ');
           botonesColoreados.push(botonClases)
           clickSound.currentTime = 0;
           clickSound.play();
@@ -623,7 +623,7 @@ function filaUno(boton:Element){
 function filasDosSeis(fila:string){
 
 
-const botonesFila2 = document.querySelectorAll(`.f${fila}`);
+const botonesFila2 = document.querySelectorAll<HTMLButtonElement>(`.f${fila}`);
 
 botonesFila2.forEach((boton) => {
    
@@ -665,7 +665,7 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
       ){
           boton.classList.add('button-clicked-red');
           
-          const botonClases = Array.from(boton.classList).join(' ');
+          const botonClases:string = Array.from(boton.classList).join(' ');
 
           botonesColoreados.push(botonClases)
 
@@ -697,7 +697,7 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
             
             for(let j = 42; j > 0; j--){
 
-              const contra4 = document.querySelector(`.b${j}`) as HTMLElement
+              const contra4 = document.querySelector(`.b${j}`) as HTMLButtonElement
 
             
               if(contra4.classList.contains('button-clicked-red') || contra4.classList.contains('button-clicked-pink')){
@@ -900,7 +900,7 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
 
 
               botonDinamico?.classList.add('button-clicked-pink');
-              const claseBotonDinamico = Array.from(botonDinamico?.classList).join(' ');
+              const claseBotonDinamico:string = Array.from(botonDinamico?.classList).join(' ');
               botonesColoreados.push(claseBotonDinamico)
               clickSound.currentTime = 0;
               clickSound.play();
@@ -937,7 +937,7 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
             for(let k = 1; k < 43; k++){
               
 
-              const Scontra4 = document.querySelector(`.b${k}`) as HTMLElement
+              const Scontra4 = document.querySelector(`.b${k}`) as HTMLButtonElement
 
               if(Scontra4.classList.contains('button-clicked-red') || Scontra4.classList.contains('button-clicked-pink')){
                 continue;
@@ -1078,7 +1078,7 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
               setTimeout(() =>{
 
               botonDinamico?.classList.add('button-clicked-pink');
-              const claseBotonDinamico = Array.from(botonDinamico?.classList).join(' ');
+              const claseBotonDinamico:string = Array.from(botonDinamico?.classList).join(' ');
               botonesColoreados.push(claseBotonDinamico)
               clickSound.currentTime = 0;
               clickSound.play();
@@ -1136,7 +1136,7 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
 
               setTimeout(() =>{
               botonDinamico?.classList.add('button-clicked-pink')
-              const claseBotonDinamico = Array.from(botonDinamico?.classList).join(' ');
+              const claseBotonDinamico:string = Array.from(botonDinamico?.classList).join(' ');
               botonesColoreados.push(claseBotonDinamico)
               clickSound.currentTime = 0;
               clickSound.play();
@@ -1173,7 +1173,7 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
       ){
           boton.classList.add('button-clicked-red');
           
-          const botonClases = Array.from(boton.classList).join(' ');
+          const botonClases:string = Array.from(boton.classList).join(' ');
 
           botonesColoreados.push(botonClases)
 
@@ -1196,7 +1196,7 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
       ){
               boton.classList.add('button-clicked-yellow');
             
-          const botonClases = Array.from(boton.classList).join(' ');
+          const botonClases:string = Array.from(boton.classList).join(' ');
 
           botonesColoreados.push(botonClases)
 
@@ -1234,9 +1234,9 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
 
 
 function cuatroEnLinea(){
-const victoriaRoja = document.querySelector('.victoria-roja') as HTMLElement;
-const victoriaAmarilla = document.querySelector('.victoria-amarilla') as HTMLElement;
-const victoriaRobot = document.querySelector('.victoria-robot') as HTMLElement;
+const victoriaRoja = document.querySelector('.victoria-roja') as HTMLImageElement;
+const victoriaAmarilla = document.querySelector('.victoria-amarilla') as HTMLImageElement;
+const victoriaRobot = document.querySelector('.victoria-robot') as HTMLImageElement;
 
 if(!hayGanador){
 
@@ -1246,7 +1246,7 @@ arrayBotones.find((boton) =>{
   const numeroActual:number = Number(botonActual[1].split('').slice(1).join(''))
  
   const fila:string[] =  boton.className.split(' ');
-  const filaActual = Number(fila[0].split('').slice(1).join());
+  const filaActual:number = Number(fila[0].split('').slice(1).join());
 
   if(document.querySelector(`.b${numeroActual}`)?.classList.contains('button-clicked-red') &&
     document.querySelector(`.b${numeroActual - 7}`)?.classList.contains('button-clicked-red') &&
@@ -1530,8 +1530,8 @@ hayEmpate()
 
 function hayEmpate(){
 
-  let acumuladorBotonesUsadosRA:number = 0;
-  let acumuladorBotonesUsadosRR:number = 0;
+  let acumuladorBotonesUsadosRA = 0;
+  let acumuladorBotonesUsadosRR = 0;
 
   todosLosBotones.forEach((boton) =>{
 
@@ -1547,8 +1547,8 @@ function hayEmpate(){
 
   if(acumuladorBotonesUsadosRA === 42){
 
-    const imagenEmpateRojo = document.querySelector('.empate-rojo') as HTMLElement
-    const imagenEmpateAmarillo = document.querySelector('.empate-amarillo') as HTMLElement
+    const imagenEmpateRojo = document.querySelector('.empate-rojo') as HTMLImageElement
+    const imagenEmpateAmarillo = document.querySelector('.empate-amarillo') as HTMLImageElement
 
     imagenEmpateRojo.style.zIndex = '2'
     imagenEmpateRojo.style.opacity = '1'
@@ -1579,8 +1579,8 @@ function hayEmpate(){
 
   if(acumuladorBotonesUsadosRR === 42){
 
-    const imagenEmpateRojo = document.querySelector('.empate-rojo') as HTMLElement
-    const imagenEmpateRobot = document.querySelector('.empate-robot') as HTMLElement
+    const imagenEmpateRojo = document.querySelector('.empate-rojo') as HTMLImageElement
+    const imagenEmpateRobot = document.querySelector('.empate-robot') as HTMLImageElement
 
     imagenEmpateRojo.style.zIndex = '2'
     imagenEmpateRojo.style.opacity = '1'
