@@ -223,12 +223,31 @@ body {
 
 }
 
+.yellow-img{
+  width: 60px;
+  border-radius: 60px;
+  border-color: black;
+  border-width: 3px;
+  border-style: solid;
+  box-shadow: 1px 5px 10px 0.5px;
+  margin-left: 25px;
+  transition: box-shadow 0.5s;
+  -webkit-user-drag: none;
+
+}
+
 .reset-img:hover{
   cursor: pointer;
   box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.901);
 }
 
 .robot-img:hover{
+  cursor: pointer;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.901); 
+
+}
+
+.yellow-img:hover{
   cursor: pointer;
   box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.901); 
 
@@ -267,9 +286,16 @@ body {
 }
 
 .boton-robot-clicked{
-border-color: red;
+border-color: rgb(189, 10, 238);
 border-width: 5px;
 }
+
+.boton-yellow-clicked{
+border-color: rgb(238, 192, 10);
+border-width: 5px;
+}
+
+
 
 .no-pointer{
   pointer-events: none;
