@@ -438,14 +438,10 @@ function filaUno(boton:Element){
 
               ){
           
-                console.log('Buscando 4 en linea')
-
               arrayBotones.forEach(boton => boton.classList.add('no-pointer'))
               
               botonDinamico = document.querySelector(`.b${k}`) as HTMLButtonElement;
 
-              setTimeout(() =>{
-              
               botonDinamico?.classList.add('button-clicked-pink');
               const claseBotonDinamico:string = Array.from(botonDinamico?.classList).join(' ');
               botonesColoreados.push(claseBotonDinamico)
@@ -458,9 +454,6 @@ function filaUno(boton:Element){
               arrayBotones.forEach(boton => boton.classList.remove('no-pointer'))  
               }, 100)
               
-
-              }, 1000)
-
             primerFiltro = false;
             encontrado = true;
            
@@ -508,7 +501,7 @@ function filaUno(boton:Element){
               arrayBotones.forEach(boton => boton.classList.remove('no-pointer'))  
               }, 100)
 
-              }, 1000);
+              }, 0);
 
                cuatroEnLinea();
                saveToLocalStorage()
@@ -537,8 +530,6 @@ function filaUno(boton:Element){
             if(botonDinamico?.classList.contains('f1')){
 
              arrayBotones.forEach(boton => boton.classList.add('no-pointer'))
-
-              setTimeout(() =>{
               
               botonDinamico?.classList.add('button-clicked-pink');
               const claseBotonDinamico:string = Array.from(botonDinamico?.classList).join(' ');
@@ -551,8 +542,7 @@ function filaUno(boton:Element){
                setTimeout(() =>{
               arrayBotones.forEach(boton => boton.classList.remove('no-pointer'))  
               }, 100)
-              
-              }, 1000)
+
               break;
             }
 
@@ -562,7 +552,6 @@ function filaUno(boton:Element){
                 
               arrayBotones.forEach(boton => boton.classList.add('no-pointer'))
                 
-              setTimeout(() =>{
               botonDinamico?.classList.add('button-clicked-pink')
               const claseBotonDinamico:string = Array.from(botonDinamico?.classList).join(' ');
               botonesColoreados.push(claseBotonDinamico)
@@ -574,7 +563,6 @@ function filaUno(boton:Element){
               arrayBotones.forEach(boton => boton.classList.remove('no-pointer'))  
               }, 100)
               
-              }, 1000) 
               break;
               }
             
@@ -737,10 +725,7 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
 
                 ((document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink') &&
                 document.querySelector(`.b${j - 14}`)?.classList.contains('button-clicked-pink') &&
-                document.querySelector(`.b${j - 21}`)?.classList.contains('button-clicked-pink')) &&
-
-                (document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-red') || 
-                document.querySelector(`.b${j - 7}`)?.classList.contains('button-clicked-pink'))) 
+                document.querySelector(`.b${j - 21}`)?.classList.contains('button-clicked-pink')))
 
               ||
 
@@ -896,9 +881,6 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
               
               botonDinamico = contra4
 
-              setTimeout(() =>{
-
-
               botonDinamico?.classList.add('button-clicked-pink');
               const claseBotonDinamico:string = Array.from(botonDinamico?.classList).join(' ');
               botonesColoreados.push(claseBotonDinamico)
@@ -909,8 +891,6 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
               setTimeout(() =>{
               arrayBotones.forEach(boton => boton.classList.remove('no-pointer'))  
               }, 100)
-
-              }, 1000);
 
               encontrado = true;
                   
@@ -968,14 +948,18 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
                 document.querySelector(`.b${k - 14}`)?.classList.contains('button-clicked-red')) && 
                 (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') || 
                 document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink'))) 
+
                 ||
+
                 ((document.querySelector(`.b${k + 1}`)?.classList.contains('button-clicked-red') &&
                 document.querySelector(`.b${k + 2}`)?.classList.contains('button-clicked-red')) && 
                 (Scontra4.classList[0] === document.querySelector(`.b${k + 1}`)?.classList[0]) &&
                 (Scontra4.classList[0] === document.querySelector(`.b${k + 2}`)?.classList[0]) &&
                 (document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-red') || 
                  document.querySelector(`.b${k - 7}`)?.classList.contains('button-clicked-pink')))
+
                 ||
+                
                 ((document.querySelector(`.b${k - 1}`)?.classList.contains('button-clicked-red') &&
                 document.querySelector(`.b${k - 2}`)?.classList.contains('button-clicked-red')) && 
                 (Scontra4.classList[0] === document.querySelector(`.b${k - 1}`)?.classList[0]) &&
@@ -1075,8 +1059,6 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
               
               botonDinamico = Scontra4
 
-              setTimeout(() =>{
-
               botonDinamico?.classList.add('button-clicked-pink');
               const claseBotonDinamico:string = Array.from(botonDinamico?.classList).join(' ');
               botonesColoreados.push(claseBotonDinamico)
@@ -1088,8 +1070,6 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
               arrayBotones.forEach(boton => boton.classList.remove('no-pointer'))  
               }, 100)
               
-              }, 1000);
-
               tercerFiltro = false;
               encontrado = true;
 
@@ -1129,12 +1109,7 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
                (document.querySelector(`.b${numeroAleatorio-6}`)?.classList.contains('button-clicked-red') && 
                 (document.querySelector(`.b${numeroAleatorio-7}`)?.classList.contains('button-clicked-red') || 
                 document.querySelector(`.b${numeroAleatorio-7}`)?.classList.contains('button-clicked-pink')))){
-               
-             console.log('Este es el numero aleatorio ELEGIDO: ', numeroAleatorio)     
-             console.log('Este es el boton que colorea: ', botonDinamico)
-            //  botonDinamico = document.querySelector(`.b${numeroAleatorio}`) as HTMLElement 
 
-              setTimeout(() =>{
               botonDinamico?.classList.add('button-clicked-pink')
               const claseBotonDinamico:string = Array.from(botonDinamico?.classList).join(' ');
               botonesColoreados.push(claseBotonDinamico)
@@ -1145,8 +1120,9 @@ const numeroAnterior:number = Number(anterior[1].split('').slice(1).join(''))
               setTimeout(() =>{
               arrayBotones.forEach(boton => boton.classList.remove('no-pointer'))  
               }, 100)
-              }, 1000) 
+
               break;
+
               } else{
                 continue;
               }
