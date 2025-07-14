@@ -1,4 +1,4 @@
-# 🔴🟡 CONECT 4 
+# 🔴🟡 CONNECT 4 
 
 ### *Context: I just wanted to create a game to improve my knowledge using TypeScript to programming.* 
 
