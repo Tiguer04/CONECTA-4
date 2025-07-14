@@ -1,6 +1,6 @@
 # 🔴🟡 CONECTA 4 
 
-### *Context: I just wanted to create a game to improve my knowledge using TypeScript to programming* 
+### *Context: I just wanted to create a game to improve my knowledge using TypeScript to programming.* 
 
 ### 🎮 HOW TO PLAY PLAYER VS PLAYER
 #### 1. The red pieces start, followed by the yellow pieces and so on until a tie or a victory for one of the two players is achieved.
